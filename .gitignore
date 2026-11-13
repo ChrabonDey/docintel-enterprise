@@ -1,0 +1,17 @@
+# Dependencies
+node_modules/
+
+# Runtime databases & volatile uploads
+*.db
+*.db-shm
+*.db-wal
+uploads/
+*.log
+
+# Environment variables
+.env
+.env.local
+
+# OS files
+.DS_Store
+Thumbs.db

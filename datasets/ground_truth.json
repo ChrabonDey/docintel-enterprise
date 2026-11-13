@@ -1,0 +1,67 @@
+{
+  "INV-2026-001_ApexSolutions.pdf": {
+    "invoice_number": "INV-2026-001",
+    "invoice_date": "2026-02-15",
+    "supplier_name": "Apex Cloud Solutions Inc.",
+    "customer_name": "Global Logistics Corp",
+    "subtotal": 1500,
+    "tax": 150,
+    "total": 1650,
+    "currency": "USD",
+    "line_items_count": 2,
+    "expected_valid": true,
+    "expected_review": false
+  },
+  "INV-2026-002_EnterpriseMultiPage.pdf": {
+    "invoice_number": "INV-2026-002",
+    "invoice_date": "2026-03-01",
+    "supplier_name": "Titanium Logistics Global",
+    "customer_name": "Acme Manufacturing Ltd",
+    "subtotal": 3500,
+    "tax": 280,
+    "total": 3780,
+    "currency": "USD",
+    "line_items_count": 2,
+    "expected_valid": true,
+    "expected_review": false
+  },
+  "INV-2026-003_NordicRetail.xlsx": {
+    "invoice_number": "INV-2026-003",
+    "invoice_date": "2026-04-10",
+    "supplier_name": "Nordic Retail Group",
+    "customer_name": "Metro Superstores",
+    "subtotal": 4500,
+    "tax": 900,
+    "total": 5400,
+    "currency": "EUR",
+    "line_items_count": 2,
+    "expected_valid": true,
+    "expected_review": false
+  },
+  "INV-2026-004_DeltaSupplies.csv": {
+    "invoice_number": "INV-2026-004",
+    "invoice_date": "2026-05-18",
+    "supplier_name": "Delta Industrial Supplies Ltd",
+    "customer_name": "BuildTech Contractors",
+    "subtotal": 450,
+    "tax": 45,
+    "total": 495,
+    "currency": "USD",
+    "line_items_count": 2,
+    "expected_valid": true,
+    "expected_review": false
+  },
+  "INV-2026-005_MathDiscrepancy.csv": {
+    "invoice_number": "INV-2026-005",
+    "invoice_date": "2026-06-20",
+    "supplier_name": "Discrepancy Hardware Inc",
+    "customer_name": "FixIt Retail",
+    "subtotal": 200,
+    "tax": 20,
+    "total": 300,
+    "currency": "USD",
+    "line_items_count": 1,
+    "expected_valid": false,
+    "expected_review": true
+  }
+}

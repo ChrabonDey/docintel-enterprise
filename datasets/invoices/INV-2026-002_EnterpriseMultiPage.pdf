@@ -1,0 +1,54 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R 6 0 R] /Count 2 >>
+endobj
+
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 4 0 R /Resources << /Font << /F1 5 0 R >> >> >>
+endobj
+4 0 obj
+<< /Length 366 >>
+stream
+BT /F1 12 Tf 50 750 Td (Titanium Logistics Global) Tj ET
+BT /F1 12 Tf 50 728 Td (Invoice Number: INV-2026-002) Tj ET
+BT /F1 12 Tf 50 706 Td (Invoice Date: 2026-03-01) Tj ET
+BT /F1 12 Tf 50 684 Td (Customer: Acme Manufacturing Ltd) Tj ET
+BT /F1 12 Tf 50 662 Td (Page 1: Freight Services) Tj ET
+BT /F1 12 Tf 50 640 Td (Freight Shipping Express 1 2000.00 2000.00) Tj ET
+endstream
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+    
+
+6 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 7 0 R /Resources << /Font << /F1 8 0 R >> >> >>
+endobj
+7 0 obj
+<< /Length 440 >>
+stream
+BT /F1 12 Tf 50 750 Td (Titanium Logistics Global) Tj ET
+BT /F1 12 Tf 50 728 Td (Invoice Number: INV-2026-002) Tj ET
+BT /F1 12 Tf 50 706 Td (Page 2: Warehousing and Handling) Tj ET
+BT /F1 12 Tf 50 684 Td (Warehouse Cold Storage 3 500.00 1500.00) Tj ET
+BT /F1 12 Tf 50 662 Td (Subtotal: $3500.00) Tj ET
+BT /F1 12 Tf 50 640 Td (Tax 8%: $280.00) Tj ET
+BT /F1 12 Tf 50 618 Td (Total: $3780.00) Tj ET
+BT /F1 12 Tf 50 596 Td (Currency: USD) Tj ET
+endstream
+endobj
+8 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+    
+xref
+0 9
+trailer
+<< /Size 9 /Root 1 0 R >>
+startxref
+500
+%%EOF

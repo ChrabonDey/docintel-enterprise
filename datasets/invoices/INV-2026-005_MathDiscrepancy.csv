@@ -1,0 +1,10 @@
+Supplier: Discrepancy Hardware Inc
+Customer: FixIt Retail
+Invoice Number: INV-2026-005
+Invoice Date: 2026-06-20
+Description,Quantity,UnitPrice,TotalPrice
+Power Drill Model X,2,100.00,200.00
+Subtotal: $200.00
+Tax: $20.00
+Total: $300.00
+Currency: USD

@@ -1,0 +1,11 @@
+node_modules
+.git
+.env
+uploads/*
+!uploads/.gitkeep
+doc_intel.db
+doc_intel.db-wal
+doc_intel.db-shm
+random_test_invoice.pdf
+random_test_invoice.txt
+

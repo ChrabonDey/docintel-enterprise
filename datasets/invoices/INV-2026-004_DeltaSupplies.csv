@@ -1,0 +1,11 @@
+Supplier: Delta Industrial Supplies Ltd
+Customer: BuildTech Contractors
+Invoice Number: INV-2026-004
+Invoice Date: 2026-05-18
+Description,Quantity,UnitPrice,TotalPrice
+Industrial Safety Helmets,10,25.00,250.00
+Heavy Duty Work Gloves,20,10.00,200.00
+Subtotal: $450.00
+Tax: $45.00
+Total: $495.00
+Currency: USD
