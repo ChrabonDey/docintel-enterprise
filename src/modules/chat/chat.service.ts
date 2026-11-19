@@ -32,8 +32,8 @@ export class ChatService {
     if (documentId) {
       // Direct single-document retrieval mode
       const doc = db.prepare(`
-        SELECT d.id, d.original_name, d.raw_text,
-               e.invoice_number, e.supplier_name, e.total_amount, e.currency,
+        SELECT d.id, d.original_name, e.raw_text,
+               e.invoice_number, e.supplier_name, e.total, e.currency,
                e.invoice_date, e.line_items_json
         FROM documents d
         LEFT JOIN extractions e ON d.id = e.document_id
@@ -47,7 +47,7 @@ export class ChatService {
           filename: doc.original_name,
           invoiceNumber: doc.invoice_number,
           supplier: doc.supplier_name,
-          total: doc.total_amount,
+          total: doc.total,
           preview: (doc.raw_text || '').slice(0, 300),
         });
       }
@@ -60,8 +60,8 @@ export class ChatService {
         const docIds = similarDocs.map((s) => s.documentId);
 
         const rows = db.prepare(`
-          SELECT d.id, d.original_name, d.raw_text,
-                 e.invoice_number, e.supplier_name, e.total_amount, e.currency,
+          SELECT d.id, d.original_name, e.raw_text,
+                 e.invoice_number, e.supplier_name, e.total, e.currency,
                  e.invoice_date, e.line_items_json
           FROM documents d
           LEFT JOIN extractions e ON d.id = e.document_id
@@ -77,7 +77,7 @@ export class ChatService {
               filename: match.original_name,
               invoiceNumber: match.invoice_number,
               supplier: match.supplier_name,
-              total: match.total_amount,
+              total: match.total,
               relevanceScore: s.score,
               preview: s.preview,
             });
@@ -88,12 +88,12 @@ export class ChatService {
       // Fallback: if vector search found nothing, retrieve latest processed documents
       if (retrievedDocs.length === 0) {
         retrievedDocs = db.prepare(`
-          SELECT d.id, d.original_name, d.raw_text,
-                 e.invoice_number, e.supplier_name, e.total_amount, e.currency,
+          SELECT d.id, d.original_name, e.raw_text,
+                 e.invoice_number, e.supplier_name, e.total, e.currency,
                  e.invoice_date, e.line_items_json
           FROM documents d
           LEFT JOIN extractions e ON d.id = e.document_id
-          WHERE d.processing_status = 'COMPLETED'
+          WHERE d.status IN ('COMPLETED', 'VERIFIED', 'NEEDS_REVIEW')
           ORDER BY d.created_at DESC
           LIMIT 5
         `).all() as any[];
@@ -103,7 +103,7 @@ export class ChatService {
           filename: d.original_name,
           invoiceNumber: d.invoice_number,
           supplier: d.supplier_name,
-          total: d.total_amount,
+          total: d.total,
           preview: (d.raw_text || '').slice(0, 300),
         }));
       }
@@ -123,7 +123,7 @@ export class ChatService {
 Invoice Number: ${doc.invoice_number || 'N/A'}
 Supplier: ${doc.supplier_name || 'N/A'}
 Date: ${doc.invoice_date || 'N/A'}
-Total: ${doc.currency || '$'}${doc.total_amount ?? 'N/A'}
+Total: ${doc.currency || '$'}${doc.total ?? 'N/A'}
 Line Items:
 ${items || '  No item breakdown available'}
 Document Text Excerpt:
@@ -192,8 +192,8 @@ ${contextBlocks || 'No documents available in context.'}`;
 
     // Total spend / summary query
     if (qLower.includes('total') || qLower.includes('spend') || qLower.includes('sum') || qLower.includes('khoroch') || qLower.includes('mot')) {
-      const totalSum = docs.reduce((acc, d) => acc + (Number(d.total_amount) || 0), 0);
-      const docList = docs.map((d) => `• **${d.original_name}** (${d.invoice_number || 'N/A'}): ${d.currency || '$'}${d.total_amount ?? 0} from ${d.supplier_name || 'Unknown'}`).join('\n');
+      const totalSum = docs.reduce((acc, d) => acc + (Number(d.total) || 0), 0);
+      const docList = docs.map((d) => `• **${d.original_name}** (${d.invoice_number || 'N/A'}): ${d.currency || '$'}${d.total ?? 0} from ${d.supplier_name || 'Unknown'}`).join('\n');
       return `### Financial Document Summary\n\nAcross ${docs.length} matching document(s), the cumulative total is **$${totalSum.toLocaleString('en-US', { minimumFractionDigits: 2 })}**.\n\n**Breakdown:**\n${docList}`;
     }
 
@@ -209,7 +209,7 @@ ${contextBlocks || 'No documents available in context.'}`;
       `• **Invoice Number:** ${primary.invoice_number || 'Not detected'}\n` +
       `• **Supplier:** ${primary.supplier_name || 'Not detected'}\n` +
       `• **Invoice Date:** ${primary.invoice_date || 'Not detected'}\n` +
-      `• **Total Amount:** ${primary.currency || '$'}${primary.total_amount ?? '0.00'}\n\n` +
+      `• **Total Amount:** ${primary.currency || '$'}${primary.total ?? '0.00'}\n\n` +
       `*Retrieved ${docs.length} relevant document(s) matching your inquiry.*`;
   }
 }
