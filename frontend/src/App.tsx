@@ -25,6 +25,13 @@ import {
   Bot,
   Send,
   Sparkles,
+  Copy,
+  Check,
+  DollarSign,
+  Building2,
+  CalendarDays,
+  FileCheck2,
+  ChevronRight,
 } from 'lucide-react';
 
 interface DocumentItem {
@@ -43,6 +50,85 @@ interface DocumentItem {
   currency?: string;
   is_valid?: number;
   requires_manual_review?: number;
+}
+
+function renderInlineTokens(str: string, isDarkMode: boolean) {
+  const parts = str.split(/(\*\*[^*]+\*\*)/g);
+  return parts.map((part, pIdx) => {
+    if (part.startsWith('**') && part.endsWith('**')) {
+      const inner = part.slice(2, -2);
+      const isAmount = /[$€£৳]?[0-9,]+(\.[0-9]+)?/.test(inner) && (inner.includes('$') || inner.includes('€') || inner.includes('£') || inner.includes('৳'));
+      if (isAmount) {
+        return (
+          <span
+            key={pIdx}
+            className={`inline-flex items-center px-1.5 py-0.5 rounded font-mono font-bold text-[11px] border mx-0.5 ${
+              isDarkMode
+                ? 'bg-emerald-950/70 text-emerald-300 border-emerald-700/60 shadow-xs'
+                : 'bg-emerald-50 text-emerald-700 border-emerald-300 shadow-xs'
+            }`}
+          >
+            {inner}
+          </span>
+        );
+      }
+      return (
+        <strong
+          key={pIdx}
+          className={`font-semibold ${isDarkMode ? 'text-indigo-300' : 'text-indigo-700'}`}
+        >
+          {inner}
+        </strong>
+      );
+    }
+    return part;
+  });
+}
+
+function FormattedProse({ text, isDarkMode }: { text: string; isDarkMode: boolean }) {
+  if (!text) return null;
+  const lines = text.split('\n');
+
+  return (
+    <div className="space-y-1.5">
+      {lines.map((line, lIdx) => {
+        const trimmed = line.trim();
+        if (!trimmed) return <div key={lIdx} className="h-1" />;
+
+        // Header 3
+        if (trimmed.startsWith('### ')) {
+          const headerText = trimmed.replace(/^###\s+/, '');
+          return (
+            <div key={lIdx} className="flex items-center space-x-2 pt-2.5 pb-1 border-b border-slate-800/40 first:pt-0">
+              <Sparkles className="w-4 h-4 text-cyan-400 shrink-0" />
+              <h4 className="font-bold text-xs sm:text-sm bg-gradient-to-r from-cyan-400 via-sky-300 to-indigo-400 bg-clip-text text-transparent">
+                {headerText}
+              </h4>
+            </div>
+          );
+        }
+
+        // Bullet point
+        if (trimmed.startsWith('• ') || trimmed.startsWith('- ')) {
+          const bulletText = trimmed.replace(/^[•-]\s+/, '');
+          return (
+            <div key={lIdx} className="flex items-start space-x-2.5 my-1 pl-1">
+              <div className="w-1.5 h-1.5 rounded-full bg-cyan-400 mt-1.5 shrink-0 shadow-xs shadow-cyan-400/50" />
+              <div className="text-[11px] leading-relaxed flex-1">
+                {renderInlineTokens(bulletText, isDarkMode)}
+              </div>
+            </div>
+          );
+        }
+
+        return (
+          <p key={lIdx} className="text-[11px] leading-relaxed">
+            {renderInlineTokens(trimmed, isDarkMode)}
+          </p>
+        );
+      })}
+    </div>
+  );
 }
 
 export function App() {
@@ -68,15 +154,36 @@ export function App() {
   const [analytics, setAnalytics] = useState<any | null>(null);
 
   // AI Chat / Copilot state
-  const [chatMessages, setChatMessages] = useState<Array<{ role: 'user' | 'assistant'; content: string; sources?: any[]; modelUsed?: string }>>([
+  const [chatMessages, setChatMessages] = useState<Array<{
+    role: 'user' | 'assistant';
+    content: string;
+    cardData?: any;
+    sources?: any[];
+    modelUsed?: string;
+  }>>([
     {
       role: 'assistant',
       content: 'Hello! I am your Enterprise Financial Copilot (powered by LLM & RAG vector search). Ask me anything about your uploaded invoices, line items, supplier totals, or compliance checks in English or Bengali (বাংলা)!',
+      cardData: {
+        type: 'summary',
+        title: 'Enterprise AI Financial Copilot Ready',
+        metrics: [
+          { label: 'Intelligence Core', value: 'LLM + RAG', color: 'cyan' },
+          { label: 'Policy', value: 'Zero Hallucination', color: 'emerald' },
+          { label: 'Retrieval Vector', value: 'Semantic Cosine', color: 'indigo' },
+        ],
+        highlights: [
+          'Ask questions about invoice amounts, dates, suppliers, and line items.',
+          'Supports multi-language queries in English and বাংলা seamlessly.',
+          'Answers include itemized tables and verified audit sources.',
+        ],
+      },
     },
   ]);
   const [chatInput, setChatInput] = useState('');
   const [chatLoading, setChatLoading] = useState(false);
   const [chatDocFilter, setChatDocFilter] = useState('');
+  const [copiedMessageIdx, setCopiedMessageIdx] = useState<number | null>(null);
 
   // Manual correction modal state
   const [correctionModalOpen, setCorrectionModalOpen] = useState(false);
@@ -479,6 +586,7 @@ export function App() {
           {
             role: 'assistant',
             content: json.data.answer,
+            cardData: json.data.cardData,
             sources: json.data.sources,
             modelUsed: json.data.modelUsed,
           },
@@ -1579,37 +1687,180 @@ export function App() {
                   className={`flex items-start space-x-3 ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
                 >
                   {msg.role === 'assistant' && (
-                    <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-cyan-500 to-indigo-600 flex items-center justify-center shrink-0 shadow-md">
+                    <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-cyan-500 to-indigo-600 flex items-center justify-center shrink-0 shadow-lg shadow-cyan-500/20">
                       <Sparkles className="w-4 h-4 text-white" />
                     </div>
                   )}
 
-                  <div className={`max-w-[85%] rounded-2xl p-4 text-xs leading-relaxed ${
-                    msg.role === 'user'
-                      ? 'bg-indigo-600 text-white rounded-tr-none'
-                      : isDarkMode
-                      ? 'bg-slate-900 border border-slate-800 text-slate-200 rounded-tl-none shadow-sm'
-                      : 'bg-white border border-slate-200 text-slate-800 rounded-tl-none shadow-xs'
-                  }`}>
-                    {/* Message Body */}
-                    <div className="whitespace-pre-wrap">{msg.content}</div>
+                  <div
+                    className={`max-w-[90%] sm:max-w-[85%] rounded-2xl p-4 text-xs leading-relaxed transition-all ${
+                      msg.role === 'user'
+                        ? 'bg-gradient-to-r from-indigo-600 to-blue-600 text-white rounded-tr-none shadow-md shadow-indigo-500/20'
+                        : isDarkMode
+                        ? 'bg-slate-900/90 border border-slate-800 text-slate-200 rounded-tl-none shadow-xl'
+                        : 'bg-white border border-slate-200 text-slate-800 rounded-tl-none shadow-md'
+                    }`}
+                  >
+                    {/* If Assistant and CardData exists: Rich Visual Cards */}
+                    {msg.role === 'assistant' && msg.cardData && (
+                      <div className="mb-3.5 pb-3 border-b border-slate-800/60">
+                        {/* Card Title Banner */}
+                        <div className="flex items-center justify-between pb-2.5 mb-3 border-b border-slate-800/40">
+                          <div className="flex items-center space-x-2">
+                            <div className="p-1 rounded-md bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">
+                              <Layers className="w-3.5 h-3.5" />
+                            </div>
+                            <span className="font-bold text-xs sm:text-sm bg-gradient-to-r from-cyan-400 via-sky-300 to-indigo-400 bg-clip-text text-transparent">
+                              {msg.cardData.title}
+                            </span>
+                          </div>
+                          <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-slate-800/80 text-cyan-400 border border-slate-700">
+                            Verified Extract
+                          </span>
+                        </div>
+
+                        {/* Interactive Metrics Row */}
+                        {msg.cardData.metrics && (
+                          <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5 mb-3.5">
+                            {msg.cardData.metrics.map((m: any, mIdx: number) => (
+                              <div
+                                key={mIdx}
+                                className={`p-2.5 rounded-xl border flex flex-col justify-between ${
+                                  isDarkMode
+                                    ? 'bg-slate-950/70 border-slate-800/80 shadow-xs'
+                                    : 'bg-slate-50 border-slate-200 shadow-xs'
+                                }`}
+                              >
+                                <span className={`text-[10px] font-medium truncate ${
+                                  isDarkMode ? 'text-slate-400' : 'text-slate-500'
+                                }`}>
+                                  {m.label}
+                                </span>
+                                <span className={`text-sm sm:text-base font-extrabold font-mono mt-1 ${
+                                  m.color === 'emerald'
+                                    ? 'text-emerald-400'
+                                    : m.color === 'indigo'
+                                    ? 'text-indigo-400'
+                                    : m.color === 'amber'
+                                    ? 'text-amber-400'
+                                    : 'text-cyan-400'
+                                }`}>
+                                  {m.value}
+                                </span>
+                              </div>
+                            ))}
+                          </div>
+                        )}
+
+                        {/* Interactive Data Table */}
+                        {msg.cardData.table && (
+                          <div className={`overflow-x-auto rounded-xl border mb-3 ${
+                            isDarkMode ? 'border-slate-800 bg-slate-950/60' : 'border-slate-200 bg-white'
+                          }`}>
+                            <table className="w-full text-left text-[11px] border-collapse">
+                              <thead className={`text-[9px] font-semibold uppercase tracking-wider ${
+                                isDarkMode ? 'bg-slate-800/80 text-slate-300' : 'bg-slate-100 text-slate-600'
+                              }`}>
+                                <tr>
+                                  {msg.cardData.table.headers.map((h: string, i: number) => (
+                                    <th key={i} className="py-2 px-3 border-b border-slate-700/50">
+                                      {h}
+                                    </th>
+                                  ))}
+                                </tr>
+                              </thead>
+                              <tbody className={`divide-y ${
+                                isDarkMode ? 'divide-slate-800/60' : 'divide-slate-200'
+                              }`}>
+                                {msg.cardData.table.rows.map((row: string[], rIdx: number) => (
+                                  <tr
+                                    key={rIdx}
+                                    className={`transition ${
+                                      isDarkMode ? 'hover:bg-slate-800/30' : 'hover:bg-slate-50'
+                                    }`}
+                                  >
+                                    {row.map((cell: string, cIdx: number) => (
+                                      <td
+                                        key={cIdx}
+                                        className={`py-2 px-3 ${
+                                          cIdx === row.length - 1
+                                            ? 'font-mono font-bold text-emerald-400'
+                                            : isDarkMode ? 'text-slate-300' : 'text-slate-700'
+                                        }`}
+                                      >
+                                        {cell}
+                                      </td>
+                                    ))}
+                                  </tr>
+                                ))}
+                              </tbody>
+                            </table>
+                          </div>
+                        )}
+
+                        {/* Card Highlights */}
+                        {msg.cardData.highlights && msg.cardData.highlights.length > 0 && (
+                          <div className={`p-2.5 rounded-xl border space-y-1 ${
+                            isDarkMode
+                              ? 'bg-indigo-950/20 border-indigo-900/40 text-indigo-200'
+                              : 'bg-indigo-50/80 border-indigo-200 text-indigo-800'
+                          }`}>
+                            {msg.cardData.highlights.map((hl: string, hIdx: number) => (
+                              <div key={hIdx} className="flex items-center space-x-2 text-[11px]">
+                                <div className="w-1.5 h-1.5 rounded-full bg-indigo-400 shrink-0" />
+                                <span>{hl}</span>
+                              </div>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    )}
+
+                    {/* Formatted Content Prose */}
+                    {msg.role === 'assistant' ? (
+                      <FormattedProse text={msg.content} isDarkMode={isDarkMode} />
+                    ) : (
+                      <div className="whitespace-pre-wrap">{msg.content}</div>
+                    )}
 
                     {/* Grounded Source Citations */}
                     {msg.sources && msg.sources.length > 0 && (
-                      <div className="mt-3 pt-3 border-t border-slate-800/60 text-[11px]">
-                        <span className="font-semibold text-cyan-400">Grounded Document Sources:</span>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-1.5">
+                      <div className="mt-3.5 pt-3 border-t border-slate-800/60 text-[11px]">
+                        <div className="flex items-center space-x-1.5 font-semibold text-cyan-400 mb-2">
+                          <FileCheck2 className="w-3.5 h-3.5" />
+                          <span>Grounded Document Sources ({msg.sources.length}):</span>
+                        </div>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                           {msg.sources.map((src, sIdx) => (
                             <div
                               key={sIdx}
-                              className={`p-2 rounded-lg border text-[10px] ${
-                                isDarkMode ? 'bg-slate-950 border-slate-800/80 text-slate-300' : 'bg-slate-50 border-slate-200 text-slate-600'
+                              className={`p-2.5 rounded-xl border transition ${
+                                isDarkMode
+                                  ? 'bg-slate-950/60 border-slate-800/80 hover:border-cyan-500/50'
+                                  : 'bg-slate-50 border-slate-200 hover:border-cyan-500/50 shadow-xs'
                               }`}
                             >
-                              <div className="font-semibold text-slate-200 truncate">{src.filename}</div>
-                              <div className="text-slate-400">
-                                {src.supplier ? `${src.supplier} • ` : ''}${src.total ? `$${src.total}` : ''}
-                                {src.relevanceScore ? ` (Match: ${Math.round(src.relevanceScore * 100)}%)` : ''}
+                              <div className="flex items-center justify-between mb-1">
+                                <span className={`font-semibold truncate text-[11px] ${
+                                  isDarkMode ? 'text-slate-200' : 'text-slate-800'
+                                }`}>
+                                  {src.filename}
+                                </span>
+                                {src.relevanceScore !== undefined && (
+                                  <span className="text-[10px] font-mono px-1.5 py-0.2 rounded bg-cyan-950 text-cyan-300 border border-cyan-800">
+                                    {Math.round(src.relevanceScore * 100)}% Match
+                                  </span>
+                                )}
+                              </div>
+                              <div className={`text-[10px] flex items-center justify-between ${
+                                isDarkMode ? 'text-slate-400' : 'text-slate-500'
+                              }`}>
+                                <span>{src.supplier || 'Vendor N/A'}</span>
+                                {src.total !== null && (
+                                  <span className="font-mono font-semibold text-emerald-400">
+                                    {src.currency || '$'}{src.total}
+                                  </span>
+                                )}
                               </div>
                             </div>
                           ))}
@@ -1617,10 +1868,42 @@ export function App() {
                       </div>
                     )}
 
-                    {/* Model Tag */}
-                    {msg.modelUsed && (
-                      <div className="mt-2 text-[10px] text-slate-500 text-right font-mono">
-                        via {msg.modelUsed}
+                    {/* Assistant Footer Actions: Copy Button & Model Tag */}
+                    {msg.role === 'assistant' && (
+                      <div className="mt-3 pt-2.5 border-t border-slate-800/40 flex items-center justify-between text-[10px]">
+                        <button
+                          type="button"
+                          onClick={() => {
+                            navigator.clipboard.writeText(msg.content);
+                            setCopiedMessageIdx(index);
+                            setTimeout(() => setCopiedMessageIdx(null), 2000);
+                          }}
+                          className={`flex items-center space-x-1.5 px-2 py-1 rounded-md border transition cursor-pointer ${
+                            copiedMessageIdx === index
+                              ? 'bg-emerald-950/80 border-emerald-700 text-emerald-300'
+                              : isDarkMode
+                              ? 'bg-slate-950/60 border-slate-800 text-slate-400 hover:text-slate-200 hover:border-slate-700'
+                              : 'bg-white border-slate-200 text-slate-600 hover:text-slate-900'
+                          }`}
+                        >
+                          {copiedMessageIdx === index ? (
+                            <>
+                              <Check className="w-3 h-3 text-emerald-400" />
+                              <span>Copied!</span>
+                            </>
+                          ) : (
+                            <>
+                              <Copy className="w-3 h-3" />
+                              <span>Copy Answer</span>
+                            </>
+                          )}
+                        </button>
+
+                        {msg.modelUsed && (
+                          <div className="text-[10px] text-slate-500 font-mono">
+                            via {msg.modelUsed}
+                          </div>
+                        )}
                       </div>
                     )}
                   </div>

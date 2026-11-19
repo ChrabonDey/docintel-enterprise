@@ -19001,8 +19001,27 @@ var __iconData2 = {
 };
 __iconData2.node;
 var CircleX = createLucideIcon(__iconData2);
-// node_modules/lucide-react/dist/esm/icons/layers.mjs
+// node_modules/lucide-react/dist/esm/icons/file-check-corner.mjs
 var __iconData3 = {
+  name: "file-check-corner",
+  size: 24,
+  node: [
+    [
+      "path",
+      {
+        d: "M10.5 22H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.706.706l3.588 3.588A2.4 2.4 0 0 1 20 8v6",
+        key: "g5mvt7"
+      }
+    ],
+    ["path", { d: "M14 2v5a1 1 0 0 0 1 1h5", key: "wfsgrz" }],
+    ["path", { d: "m14 20 2 2 4-4", key: "15kota" }]
+  ],
+  aliases: ["file-check-2"]
+};
+__iconData3.node;
+var FileCheckCorner = createLucideIcon(__iconData3);
+// node_modules/lucide-react/dist/esm/icons/layers.mjs
+var __iconData4 = {
   name: "layers",
   size: 24,
   node: [
@@ -19030,10 +19049,10 @@ var __iconData3 = {
   ],
   aliases: ["layers-3"]
 };
-__iconData3.node;
-var Layers = createLucideIcon(__iconData3);
+__iconData4.node;
+var Layers = createLucideIcon(__iconData4);
 // node_modules/lucide-react/dist/esm/icons/pen-line.mjs
-var __iconData4 = {
+var __iconData5 = {
   name: "pen-line",
   size: 24,
   node: [
@@ -19048,10 +19067,10 @@ var __iconData4 = {
   ],
   aliases: ["edit-3"]
 };
-__iconData4.node;
-var PenLine = createLucideIcon(__iconData4);
+__iconData5.node;
+var PenLine = createLucideIcon(__iconData5);
 // node_modules/lucide-react/dist/esm/icons/sparkles.mjs
-var __iconData5 = {
+var __iconData6 = {
   name: "sparkles",
   size: 24,
   node: [
@@ -19068,10 +19087,10 @@ var __iconData5 = {
   ],
   aliases: ["stars"]
 };
-__iconData5.node;
-var Sparkles = createLucideIcon(__iconData5);
+__iconData6.node;
+var Sparkles = createLucideIcon(__iconData6);
 // node_modules/lucide-react/dist/esm/icons/triangle-exclamation-point.mjs
-var __iconData6 = {
+var __iconData7 = {
   name: "triangle-exclamation-point",
   size: 24,
   node: [
@@ -19087,10 +19106,10 @@ var __iconData6 = {
   ],
   aliases: ["alert-triangle", "triangle-alert"]
 };
-__iconData6.node;
-var TriangleExclamationPoint = createLucideIcon(__iconData6);
+__iconData7.node;
+var TriangleExclamationPoint = createLucideIcon(__iconData7);
 // node_modules/lucide-react/dist/esm/icons/arrow-right.mjs
-var __iconData7 = {
+var __iconData8 = {
   name: "arrow-right",
   size: 24,
   node: [
@@ -19098,10 +19117,10 @@ var __iconData7 = {
     ["path", { d: "m12 5 7 7-7 7", key: "xquz4c" }]
   ]
 };
-__iconData7.node;
-var ArrowRight = createLucideIcon(__iconData7);
+__iconData8.node;
+var ArrowRight = createLucideIcon(__iconData8);
 // node_modules/lucide-react/dist/esm/icons/bot.mjs
-var __iconData8 = {
+var __iconData9 = {
   name: "bot",
   size: 24,
   node: [
@@ -19113,10 +19132,29 @@ var __iconData8 = {
     ["path", { d: "M9 13v2", key: "rq6x2g" }]
   ]
 };
-__iconData8.node;
-var Bot = createLucideIcon(__iconData8);
+__iconData9.node;
+var Bot = createLucideIcon(__iconData9);
+// node_modules/lucide-react/dist/esm/icons/check.mjs
+var __iconData10 = {
+  name: "check",
+  size: 24,
+  node: [["path", { d: "M20 6 9 17l-5-5", key: "1gmf2c" }]]
+};
+__iconData10.node;
+var Check = createLucideIcon(__iconData10);
+// node_modules/lucide-react/dist/esm/icons/copy.mjs
+var __iconData11 = {
+  name: "copy",
+  size: 24,
+  node: [
+    ["rect", { width: "14", height: "14", x: "8", y: "8", rx: "2", ry: "2", key: "17jyea" }],
+    ["path", { d: "M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2", key: "zix9uf" }]
+  ]
+};
+__iconData11.node;
+var Copy = createLucideIcon(__iconData11);
 // node_modules/lucide-react/dist/esm/icons/eye.mjs
-var __iconData9 = {
+var __iconData12 = {
   name: "eye",
   size: 24,
   node: [
@@ -19130,10 +19168,10 @@ var __iconData9 = {
     ["circle", { cx: "12", cy: "12", r: "3", key: "1v7zrd" }]
   ]
 };
-__iconData9.node;
-var Eye = createLucideIcon(__iconData9);
+__iconData12.node;
+var Eye = createLucideIcon(__iconData12);
 // node_modules/lucide-react/dist/esm/icons/file-text.mjs
-var __iconData10 = {
+var __iconData13 = {
   name: "file-text",
   size: 24,
   node: [
@@ -19150,10 +19188,10 @@ var __iconData10 = {
     ["path", { d: "M16 17H8", key: "z1uh3a" }]
   ]
 };
-__iconData10.node;
-var FileText = createLucideIcon(__iconData10);
+__iconData13.node;
+var FileText = createLucideIcon(__iconData13);
 // node_modules/lucide-react/dist/esm/icons/git-compare.mjs
-var __iconData11 = {
+var __iconData14 = {
   name: "git-compare",
   size: 24,
   node: [
@@ -19163,10 +19201,10 @@ var __iconData11 = {
     ["path", { d: "M11 18H8a2 2 0 0 1-2-2V9", key: "19pyzm" }]
   ]
 };
-__iconData11.node;
-var GitCompare = createLucideIcon(__iconData11);
+__iconData14.node;
+var GitCompare = createLucideIcon(__iconData14);
 // node_modules/lucide-react/dist/esm/icons/lock.mjs
-var __iconData12 = {
+var __iconData15 = {
   name: "lock",
   size: 24,
   node: [
@@ -19174,10 +19212,10 @@ var __iconData12 = {
     ["path", { d: "M7 11V7a5 5 0 0 1 10 0v4", key: "fwvmzm" }]
   ]
 };
-__iconData12.node;
-var Lock = createLucideIcon(__iconData12);
+__iconData15.node;
+var Lock = createLucideIcon(__iconData15);
 // node_modules/lucide-react/dist/esm/icons/menu.mjs
-var __iconData13 = {
+var __iconData16 = {
   name: "menu",
   size: 24,
   node: [
@@ -19186,10 +19224,10 @@ var __iconData13 = {
     ["path", { d: "M4 19h16", key: "1djgab" }]
   ]
 };
-__iconData13.node;
-var Menu = createLucideIcon(__iconData13);
+__iconData16.node;
+var Menu = createLucideIcon(__iconData16);
 // node_modules/lucide-react/dist/esm/icons/moon.mjs
-var __iconData14 = {
+var __iconData17 = {
   name: "moon",
   size: 24,
   node: [
@@ -19202,10 +19240,10 @@ var __iconData14 = {
     ]
   ]
 };
-__iconData14.node;
-var Moon = createLucideIcon(__iconData14);
+__iconData17.node;
+var Moon = createLucideIcon(__iconData17);
 // node_modules/lucide-react/dist/esm/icons/refresh-cw.mjs
-var __iconData15 = {
+var __iconData18 = {
   name: "refresh-cw",
   size: 24,
   node: [
@@ -19215,10 +19253,10 @@ var __iconData15 = {
     ["path", { d: "M8 16H3v5", key: "1cv678" }]
   ]
 };
-__iconData15.node;
-var RefreshCw = createLucideIcon(__iconData15);
+__iconData18.node;
+var RefreshCw = createLucideIcon(__iconData18);
 // node_modules/lucide-react/dist/esm/icons/search.mjs
-var __iconData16 = {
+var __iconData19 = {
   name: "search",
   size: 24,
   node: [
@@ -19226,10 +19264,10 @@ var __iconData16 = {
     ["circle", { cx: "11", cy: "11", r: "8", key: "4ej97u" }]
   ]
 };
-__iconData16.node;
-var Search = createLucideIcon(__iconData16);
+__iconData19.node;
+var Search = createLucideIcon(__iconData19);
 // node_modules/lucide-react/dist/esm/icons/send.mjs
-var __iconData17 = {
+var __iconData20 = {
   name: "send",
   size: 24,
   node: [
@@ -19243,10 +19281,10 @@ var __iconData17 = {
     ["path", { d: "m21.854 2.147-10.94 10.939", key: "12cjpa" }]
   ]
 };
-__iconData17.node;
-var Send = createLucideIcon(__iconData17);
+__iconData20.node;
+var Send = createLucideIcon(__iconData20);
 // node_modules/lucide-react/dist/esm/icons/shield-check.mjs
-var __iconData18 = {
+var __iconData21 = {
   name: "shield-check",
   size: 24,
   node: [
@@ -19260,10 +19298,10 @@ var __iconData18 = {
     ["path", { d: "m9 12 2 2 4-4", key: "dzmm74" }]
   ]
 };
-__iconData18.node;
-var ShieldCheck = createLucideIcon(__iconData18);
+__iconData21.node;
+var ShieldCheck = createLucideIcon(__iconData21);
 // node_modules/lucide-react/dist/esm/icons/sun.mjs
-var __iconData19 = {
+var __iconData22 = {
   name: "sun",
   size: 24,
   node: [
@@ -19278,10 +19316,10 @@ var __iconData19 = {
     ["path", { d: "m19.07 4.93-1.41 1.41", key: "1shlcs" }]
   ]
 };
-__iconData19.node;
-var Sun = createLucideIcon(__iconData19);
+__iconData22.node;
+var Sun = createLucideIcon(__iconData22);
 // node_modules/lucide-react/dist/esm/icons/upload.mjs
-var __iconData20 = {
+var __iconData23 = {
   name: "upload",
   size: 24,
   node: [
@@ -19290,10 +19328,10 @@ var __iconData20 = {
     ["path", { d: "M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4", key: "ih7n3h" }]
   ]
 };
-__iconData20.node;
-var Upload = createLucideIcon(__iconData20);
+__iconData23.node;
+var Upload = createLucideIcon(__iconData23);
 // node_modules/lucide-react/dist/esm/icons/x.mjs
-var __iconData21 = {
+var __iconData24 = {
   name: "x",
   size: 24,
   node: [
@@ -19301,10 +19339,80 @@ var __iconData21 = {
     ["path", { d: "m6 6 12 12", key: "d8bk6v" }]
   ]
 };
-__iconData21.node;
-var X = createLucideIcon(__iconData21);
+__iconData24.node;
+var X = createLucideIcon(__iconData24);
 // frontend/src/App.tsx
 var jsx_dev_runtime = __toESM(require_jsx_dev_runtime(), 1);
+function renderInlineTokens(str, isDarkMode) {
+  const parts = str.split(/(\*\*[^*]+\*\*)/g);
+  return parts.map((part, pIdx) => {
+    if (part.startsWith("**") && part.endsWith("**")) {
+      const inner = part.slice(2, -2);
+      const isAmount = /[$€£৳]?[0-9,]+(\.[0-9]+)?/.test(inner) && (inner.includes("$") || inner.includes("€") || inner.includes("£") || inner.includes("৳"));
+      if (isAmount) {
+        return /* @__PURE__ */ jsx_dev_runtime.jsxDEV("span", {
+          className: `inline-flex items-center px-1.5 py-0.5 rounded font-mono font-bold text-[11px] border mx-0.5 ${isDarkMode ? "bg-emerald-950/70 text-emerald-300 border-emerald-700/60 shadow-xs" : "bg-emerald-50 text-emerald-700 border-emerald-300 shadow-xs"}`,
+          children: inner
+        }, pIdx, false, undefined, this);
+      }
+      return /* @__PURE__ */ jsx_dev_runtime.jsxDEV("strong", {
+        className: `font-semibold ${isDarkMode ? "text-indigo-300" : "text-indigo-700"}`,
+        children: inner
+      }, pIdx, false, undefined, this);
+    }
+    return part;
+  });
+}
+function FormattedProse({ text, isDarkMode }) {
+  if (!text)
+    return null;
+  const lines = text.split(`
+`);
+  return /* @__PURE__ */ jsx_dev_runtime.jsxDEV("div", {
+    className: "space-y-1.5",
+    children: lines.map((line, lIdx) => {
+      const trimmed = line.trim();
+      if (!trimmed)
+        return /* @__PURE__ */ jsx_dev_runtime.jsxDEV("div", {
+          className: "h-1"
+        }, lIdx, false, undefined, this);
+      if (trimmed.startsWith("### ")) {
+        const headerText = trimmed.replace(/^###\s+/, "");
+        return /* @__PURE__ */ jsx_dev_runtime.jsxDEV("div", {
+          className: "flex items-center space-x-2 pt-2.5 pb-1 border-b border-slate-800/40 first:pt-0",
+          children: [
+            /* @__PURE__ */ jsx_dev_runtime.jsxDEV(Sparkles, {
+              className: "w-4 h-4 text-cyan-400 shrink-0"
+            }, undefined, false, undefined, this),
+            /* @__PURE__ */ jsx_dev_runtime.jsxDEV("h4", {
+              className: "font-bold text-xs sm:text-sm bg-gradient-to-r from-cyan-400 via-sky-300 to-indigo-400 bg-clip-text text-transparent",
+              children: headerText
+            }, undefined, false, undefined, this)
+          ]
+        }, lIdx, true, undefined, this);
+      }
+      if (trimmed.startsWith("• ") || trimmed.startsWith("- ")) {
+        const bulletText = trimmed.replace(/^[•-]\s+/, "");
+        return /* @__PURE__ */ jsx_dev_runtime.jsxDEV("div", {
+          className: "flex items-start space-x-2.5 my-1 pl-1",
+          children: [
+            /* @__PURE__ */ jsx_dev_runtime.jsxDEV("div", {
+              className: "w-1.5 h-1.5 rounded-full bg-cyan-400 mt-1.5 shrink-0 shadow-xs shadow-cyan-400/50"
+            }, undefined, false, undefined, this),
+            /* @__PURE__ */ jsx_dev_runtime.jsxDEV("div", {
+              className: "text-[11px] leading-relaxed flex-1",
+              children: renderInlineTokens(bulletText, isDarkMode)
+            }, undefined, false, undefined, this)
+          ]
+        }, lIdx, true, undefined, this);
+      }
+      return /* @__PURE__ */ jsx_dev_runtime.jsxDEV("p", {
+        className: "text-[11px] leading-relaxed",
+        children: renderInlineTokens(trimmed, isDarkMode)
+      }, lIdx, false, undefined, this);
+    })
+  }, undefined, false, undefined, this);
+}
 function App() {
   const [activeTab, setActiveTab] = import_react4.useState("documents");
   const [documents, setDocuments] = import_react4.useState([]);
@@ -19323,12 +19431,27 @@ function App() {
   const [chatMessages, setChatMessages] = import_react4.useState([
     {
       role: "assistant",
-      content: "Hello! I am your Enterprise Financial Copilot (powered by LLM & RAG vector search). Ask me anything about your uploaded invoices, line items, supplier totals, or compliance checks in English or Bengali (বাংলা)!"
+      content: "Hello! I am your Enterprise Financial Copilot (powered by LLM & RAG vector search). Ask me anything about your uploaded invoices, line items, supplier totals, or compliance checks in English or Bengali (বাংলা)!",
+      cardData: {
+        type: "summary",
+        title: "Enterprise AI Financial Copilot Ready",
+        metrics: [
+          { label: "Intelligence Core", value: "LLM + RAG", color: "cyan" },
+          { label: "Policy", value: "Zero Hallucination", color: "emerald" },
+          { label: "Retrieval Vector", value: "Semantic Cosine", color: "indigo" }
+        ],
+        highlights: [
+          "Ask questions about invoice amounts, dates, suppliers, and line items.",
+          "Supports multi-language queries in English and বাংলা seamlessly.",
+          "Answers include itemized tables and verified audit sources."
+        ]
+      }
     }
   ]);
   const [chatInput, setChatInput] = import_react4.useState("");
   const [chatLoading, setChatLoading] = import_react4.useState(false);
   const [chatDocFilter, setChatDocFilter] = import_react4.useState("");
+  const [copiedMessageIdx, setCopiedMessageIdx] = import_react4.useState(null);
   const [correctionModalOpen, setCorrectionModalOpen] = import_react4.useState(false);
   const [editFields, setEditFields] = import_react4.useState({});
   const [editReason, setEditReason] = import_react4.useState("");
@@ -19694,6 +19817,7 @@ function App() {
           {
             role: "assistant",
             content: json.data.answer,
+            cardData: json.data.cardData,
             sources: json.data.sources,
             modelUsed: json.data.modelUsed
           }
@@ -21221,41 +21345,159 @@ function App() {
                       className: `flex items-start space-x-3 ${msg.role === "user" ? "justify-end" : "justify-start"}`,
                       children: [
                         msg.role === "assistant" && /* @__PURE__ */ jsx_dev_runtime.jsxDEV("div", {
-                          className: "w-8 h-8 rounded-xl bg-gradient-to-tr from-cyan-500 to-indigo-600 flex items-center justify-center shrink-0 shadow-md",
+                          className: "w-8 h-8 rounded-xl bg-gradient-to-tr from-cyan-500 to-indigo-600 flex items-center justify-center shrink-0 shadow-lg shadow-cyan-500/20",
                           children: /* @__PURE__ */ jsx_dev_runtime.jsxDEV(Sparkles, {
                             className: "w-4 h-4 text-white"
                           }, undefined, false, undefined, this)
                         }, undefined, false, undefined, this),
                         /* @__PURE__ */ jsx_dev_runtime.jsxDEV("div", {
-                          className: `max-w-[85%] rounded-2xl p-4 text-xs leading-relaxed ${msg.role === "user" ? "bg-indigo-600 text-white rounded-tr-none" : isDarkMode ? "bg-slate-900 border border-slate-800 text-slate-200 rounded-tl-none shadow-sm" : "bg-white border border-slate-200 text-slate-800 rounded-tl-none shadow-xs"}`,
+                          className: `max-w-[90%] sm:max-w-[85%] rounded-2xl p-4 text-xs leading-relaxed transition-all ${msg.role === "user" ? "bg-gradient-to-r from-indigo-600 to-blue-600 text-white rounded-tr-none shadow-md shadow-indigo-500/20" : isDarkMode ? "bg-slate-900/90 border border-slate-800 text-slate-200 rounded-tl-none shadow-xl" : "bg-white border border-slate-200 text-slate-800 rounded-tl-none shadow-md"}`,
                           children: [
-                            /* @__PURE__ */ jsx_dev_runtime.jsxDEV("div", {
+                            msg.role === "assistant" && msg.cardData && /* @__PURE__ */ jsx_dev_runtime.jsxDEV("div", {
+                              className: "mb-3.5 pb-3 border-b border-slate-800/60",
+                              children: [
+                                /* @__PURE__ */ jsx_dev_runtime.jsxDEV("div", {
+                                  className: "flex items-center justify-between pb-2.5 mb-3 border-b border-slate-800/40",
+                                  children: [
+                                    /* @__PURE__ */ jsx_dev_runtime.jsxDEV("div", {
+                                      className: "flex items-center space-x-2",
+                                      children: [
+                                        /* @__PURE__ */ jsx_dev_runtime.jsxDEV("div", {
+                                          className: "p-1 rounded-md bg-cyan-500/10 text-cyan-400 border border-cyan-500/20",
+                                          children: /* @__PURE__ */ jsx_dev_runtime.jsxDEV(Layers, {
+                                            className: "w-3.5 h-3.5"
+                                          }, undefined, false, undefined, this)
+                                        }, undefined, false, undefined, this),
+                                        /* @__PURE__ */ jsx_dev_runtime.jsxDEV("span", {
+                                          className: "font-bold text-xs sm:text-sm bg-gradient-to-r from-cyan-400 via-sky-300 to-indigo-400 bg-clip-text text-transparent",
+                                          children: msg.cardData.title
+                                        }, undefined, false, undefined, this)
+                                      ]
+                                    }, undefined, true, undefined, this),
+                                    /* @__PURE__ */ jsx_dev_runtime.jsxDEV("span", {
+                                      className: "text-[10px] font-mono px-2 py-0.5 rounded-full bg-slate-800/80 text-cyan-400 border border-slate-700",
+                                      children: "Verified Extract"
+                                    }, undefined, false, undefined, this)
+                                  ]
+                                }, undefined, true, undefined, this),
+                                msg.cardData.metrics && /* @__PURE__ */ jsx_dev_runtime.jsxDEV("div", {
+                                  className: "grid grid-cols-2 sm:grid-cols-3 gap-2.5 mb-3.5",
+                                  children: msg.cardData.metrics.map((m, mIdx) => /* @__PURE__ */ jsx_dev_runtime.jsxDEV("div", {
+                                    className: `p-2.5 rounded-xl border flex flex-col justify-between ${isDarkMode ? "bg-slate-950/70 border-slate-800/80 shadow-xs" : "bg-slate-50 border-slate-200 shadow-xs"}`,
+                                    children: [
+                                      /* @__PURE__ */ jsx_dev_runtime.jsxDEV("span", {
+                                        className: `text-[10px] font-medium truncate ${isDarkMode ? "text-slate-400" : "text-slate-500"}`,
+                                        children: m.label
+                                      }, undefined, false, undefined, this),
+                                      /* @__PURE__ */ jsx_dev_runtime.jsxDEV("span", {
+                                        className: `text-sm sm:text-base font-extrabold font-mono mt-1 ${m.color === "emerald" ? "text-emerald-400" : m.color === "indigo" ? "text-indigo-400" : m.color === "amber" ? "text-amber-400" : "text-cyan-400"}`,
+                                        children: m.value
+                                      }, undefined, false, undefined, this)
+                                    ]
+                                  }, mIdx, true, undefined, this))
+                                }, undefined, false, undefined, this),
+                                msg.cardData.table && /* @__PURE__ */ jsx_dev_runtime.jsxDEV("div", {
+                                  className: `overflow-x-auto rounded-xl border mb-3 ${isDarkMode ? "border-slate-800 bg-slate-950/60" : "border-slate-200 bg-white"}`,
+                                  children: /* @__PURE__ */ jsx_dev_runtime.jsxDEV("table", {
+                                    className: "w-full text-left text-[11px] border-collapse",
+                                    children: [
+                                      /* @__PURE__ */ jsx_dev_runtime.jsxDEV("thead", {
+                                        className: `text-[9px] font-semibold uppercase tracking-wider ${isDarkMode ? "bg-slate-800/80 text-slate-300" : "bg-slate-100 text-slate-600"}`,
+                                        children: /* @__PURE__ */ jsx_dev_runtime.jsxDEV("tr", {
+                                          children: msg.cardData.table.headers.map((h, i) => /* @__PURE__ */ jsx_dev_runtime.jsxDEV("th", {
+                                            className: "py-2 px-3 border-b border-slate-700/50",
+                                            children: h
+                                          }, i, false, undefined, this))
+                                        }, undefined, false, undefined, this)
+                                      }, undefined, false, undefined, this),
+                                      /* @__PURE__ */ jsx_dev_runtime.jsxDEV("tbody", {
+                                        className: `divide-y ${isDarkMode ? "divide-slate-800/60" : "divide-slate-200"}`,
+                                        children: msg.cardData.table.rows.map((row, rIdx) => /* @__PURE__ */ jsx_dev_runtime.jsxDEV("tr", {
+                                          className: `transition ${isDarkMode ? "hover:bg-slate-800/30" : "hover:bg-slate-50"}`,
+                                          children: row.map((cell, cIdx) => /* @__PURE__ */ jsx_dev_runtime.jsxDEV("td", {
+                                            className: `py-2 px-3 ${cIdx === row.length - 1 ? "font-mono font-bold text-emerald-400" : isDarkMode ? "text-slate-300" : "text-slate-700"}`,
+                                            children: cell
+                                          }, cIdx, false, undefined, this))
+                                        }, rIdx, false, undefined, this))
+                                      }, undefined, false, undefined, this)
+                                    ]
+                                  }, undefined, true, undefined, this)
+                                }, undefined, false, undefined, this),
+                                msg.cardData.highlights && msg.cardData.highlights.length > 0 && /* @__PURE__ */ jsx_dev_runtime.jsxDEV("div", {
+                                  className: `p-2.5 rounded-xl border space-y-1 ${isDarkMode ? "bg-indigo-950/20 border-indigo-900/40 text-indigo-200" : "bg-indigo-50/80 border-indigo-200 text-indigo-800"}`,
+                                  children: msg.cardData.highlights.map((hl, hIdx) => /* @__PURE__ */ jsx_dev_runtime.jsxDEV("div", {
+                                    className: "flex items-center space-x-2 text-[11px]",
+                                    children: [
+                                      /* @__PURE__ */ jsx_dev_runtime.jsxDEV("div", {
+                                        className: "w-1.5 h-1.5 rounded-full bg-indigo-400 shrink-0"
+                                      }, undefined, false, undefined, this),
+                                      /* @__PURE__ */ jsx_dev_runtime.jsxDEV("span", {
+                                        children: hl
+                                      }, undefined, false, undefined, this)
+                                    ]
+                                  }, hIdx, true, undefined, this))
+                                }, undefined, false, undefined, this)
+                              ]
+                            }, undefined, true, undefined, this),
+                            msg.role === "assistant" ? /* @__PURE__ */ jsx_dev_runtime.jsxDEV(FormattedProse, {
+                              text: msg.content,
+                              isDarkMode
+                            }, undefined, false, undefined, this) : /* @__PURE__ */ jsx_dev_runtime.jsxDEV("div", {
                               className: "whitespace-pre-wrap",
                               children: msg.content
                             }, undefined, false, undefined, this),
                             msg.sources && msg.sources.length > 0 && /* @__PURE__ */ jsx_dev_runtime.jsxDEV("div", {
-                              className: "mt-3 pt-3 border-t border-slate-800/60 text-[11px]",
+                              className: "mt-3.5 pt-3 border-t border-slate-800/60 text-[11px]",
                               children: [
-                                /* @__PURE__ */ jsx_dev_runtime.jsxDEV("span", {
-                                  className: "font-semibold text-cyan-400",
-                                  children: "Grounded Document Sources:"
-                                }, undefined, false, undefined, this),
                                 /* @__PURE__ */ jsx_dev_runtime.jsxDEV("div", {
-                                  className: "grid grid-cols-1 sm:grid-cols-2 gap-2 mt-1.5",
+                                  className: "flex items-center space-x-1.5 font-semibold text-cyan-400 mb-2",
+                                  children: [
+                                    /* @__PURE__ */ jsx_dev_runtime.jsxDEV(FileCheckCorner, {
+                                      className: "w-3.5 h-3.5"
+                                    }, undefined, false, undefined, this),
+                                    /* @__PURE__ */ jsx_dev_runtime.jsxDEV("span", {
+                                      children: [
+                                        "Grounded Document Sources (",
+                                        msg.sources.length,
+                                        "):"
+                                      ]
+                                    }, undefined, true, undefined, this)
+                                  ]
+                                }, undefined, true, undefined, this),
+                                /* @__PURE__ */ jsx_dev_runtime.jsxDEV("div", {
+                                  className: "grid grid-cols-1 sm:grid-cols-2 gap-2",
                                   children: msg.sources.map((src, sIdx) => /* @__PURE__ */ jsx_dev_runtime.jsxDEV("div", {
-                                    className: `p-2 rounded-lg border text-[10px] ${isDarkMode ? "bg-slate-950 border-slate-800/80 text-slate-300" : "bg-slate-50 border-slate-200 text-slate-600"}`,
+                                    className: `p-2.5 rounded-xl border transition ${isDarkMode ? "bg-slate-950/60 border-slate-800/80 hover:border-cyan-500/50" : "bg-slate-50 border-slate-200 hover:border-cyan-500/50 shadow-xs"}`,
                                     children: [
                                       /* @__PURE__ */ jsx_dev_runtime.jsxDEV("div", {
-                                        className: "font-semibold text-slate-200 truncate",
-                                        children: src.filename
-                                      }, undefined, false, undefined, this),
-                                      /* @__PURE__ */ jsx_dev_runtime.jsxDEV("div", {
-                                        className: "text-slate-400",
+                                        className: "flex items-center justify-between mb-1",
                                         children: [
-                                          src.supplier ? `${src.supplier} • ` : "",
-                                          "$",
-                                          src.total ? `$${src.total}` : "",
-                                          src.relevanceScore ? ` (Match: ${Math.round(src.relevanceScore * 100)}%)` : ""
+                                          /* @__PURE__ */ jsx_dev_runtime.jsxDEV("span", {
+                                            className: `font-semibold truncate text-[11px] ${isDarkMode ? "text-slate-200" : "text-slate-800"}`,
+                                            children: src.filename
+                                          }, undefined, false, undefined, this),
+                                          src.relevanceScore !== undefined && /* @__PURE__ */ jsx_dev_runtime.jsxDEV("span", {
+                                            className: "text-[10px] font-mono px-1.5 py-0.2 rounded bg-cyan-950 text-cyan-300 border border-cyan-800",
+                                            children: [
+                                              Math.round(src.relevanceScore * 100),
+                                              "% Match"
+                                            ]
+                                          }, undefined, true, undefined, this)
+                                        ]
+                                      }, undefined, true, undefined, this),
+                                      /* @__PURE__ */ jsx_dev_runtime.jsxDEV("div", {
+                                        className: `text-[10px] flex items-center justify-between ${isDarkMode ? "text-slate-400" : "text-slate-500"}`,
+                                        children: [
+                                          /* @__PURE__ */ jsx_dev_runtime.jsxDEV("span", {
+                                            children: src.supplier || "Vendor N/A"
+                                          }, undefined, false, undefined, this),
+                                          src.total !== null && /* @__PURE__ */ jsx_dev_runtime.jsxDEV("span", {
+                                            className: "font-mono font-semibold text-emerald-400",
+                                            children: [
+                                              src.currency || "$",
+                                              src.total
+                                            ]
+                                          }, undefined, true, undefined, this)
                                         ]
                                       }, undefined, true, undefined, this)
                                     ]
@@ -21263,11 +21505,44 @@ function App() {
                                 }, undefined, false, undefined, this)
                               ]
                             }, undefined, true, undefined, this),
-                            msg.modelUsed && /* @__PURE__ */ jsx_dev_runtime.jsxDEV("div", {
-                              className: "mt-2 text-[10px] text-slate-500 text-right font-mono",
+                            msg.role === "assistant" && /* @__PURE__ */ jsx_dev_runtime.jsxDEV("div", {
+                              className: "mt-3 pt-2.5 border-t border-slate-800/40 flex items-center justify-between text-[10px]",
                               children: [
-                                "via ",
-                                msg.modelUsed
+                                /* @__PURE__ */ jsx_dev_runtime.jsxDEV("button", {
+                                  type: "button",
+                                  onClick: () => {
+                                    navigator.clipboard.writeText(msg.content);
+                                    setCopiedMessageIdx(index2);
+                                    setTimeout(() => setCopiedMessageIdx(null), 2000);
+                                  },
+                                  className: `flex items-center space-x-1.5 px-2 py-1 rounded-md border transition cursor-pointer ${copiedMessageIdx === index2 ? "bg-emerald-950/80 border-emerald-700 text-emerald-300" : isDarkMode ? "bg-slate-950/60 border-slate-800 text-slate-400 hover:text-slate-200 hover:border-slate-700" : "bg-white border-slate-200 text-slate-600 hover:text-slate-900"}`,
+                                  children: copiedMessageIdx === index2 ? /* @__PURE__ */ jsx_dev_runtime.jsxDEV(jsx_dev_runtime.Fragment, {
+                                    children: [
+                                      /* @__PURE__ */ jsx_dev_runtime.jsxDEV(Check, {
+                                        className: "w-3 h-3 text-emerald-400"
+                                      }, undefined, false, undefined, this),
+                                      /* @__PURE__ */ jsx_dev_runtime.jsxDEV("span", {
+                                        children: "Copied!"
+                                      }, undefined, false, undefined, this)
+                                    ]
+                                  }, undefined, true, undefined, this) : /* @__PURE__ */ jsx_dev_runtime.jsxDEV(jsx_dev_runtime.Fragment, {
+                                    children: [
+                                      /* @__PURE__ */ jsx_dev_runtime.jsxDEV(Copy, {
+                                        className: "w-3 h-3"
+                                      }, undefined, false, undefined, this),
+                                      /* @__PURE__ */ jsx_dev_runtime.jsxDEV("span", {
+                                        children: "Copy Answer"
+                                      }, undefined, false, undefined, this)
+                                    ]
+                                  }, undefined, true, undefined, this)
+                                }, undefined, false, undefined, this),
+                                msg.modelUsed && /* @__PURE__ */ jsx_dev_runtime.jsxDEV("div", {
+                                  className: "text-[10px] text-slate-500 font-mono",
+                                  children: [
+                                    "via ",
+                                    msg.modelUsed
+                                  ]
+                                }, undefined, true, undefined, this)
                               ]
                             }, undefined, true, undefined, this)
                           ]
