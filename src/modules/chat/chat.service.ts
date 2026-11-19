@@ -41,95 +41,122 @@ export interface ChatResponse {
 
 export class ChatService {
   /**
+   * Helper to detect identity, greeting, and system capability questions.
+   */
+  static isIdentityOrGreetingQuery(query: string): boolean {
+    const q = query.toLowerCase().trim();
+    const identityPatterns = [
+      /\bwho\s*(are|r)\s*you\b/i,
+      /\bwhat\s*(are|r)\s*you\b/i,
+      /\btumi\s*ke\b/i,
+      /\bapni\s*ke\b/i,
+      /\bintroduce\s*yourself\b/i,
+      /\bwhat\s*can\s*you\s*do\b/i,
+      /\bki\s*korte\s*paro\b/i,
+      /\bcapabilities\b/i,
+      /\byour\s*role\b/i,
+      /\byour\s*purpose\b/i,
+      /\btomar\s*porichoy\b/i,
+      /\bapnar\s*porichoy\b/i,
+      /\bhelp\b/i,
+      /^(hi|hello|hey|salam|assalamualaikum|kemon acho|hola)[\s!.,?]*$/i,
+    ];
+    return identityPatterns.some((pattern) => pattern.test(q));
+  }
+
+  /**
    * Process a RAG (Retrieval-Augmented Generation) query across enterprise documents.
    */
   static async query(request: DocumentChatRequest): Promise<ChatResponse> {
     const db = getDatabase();
     const { query, documentId, history = [] } = request;
 
+    const isIdentityQuery = this.isIdentityOrGreetingQuery(query);
     let retrievedDocs: any[] = [];
     let sources: ChatResponse['sources'] = [];
 
-    if (documentId) {
-      // Direct single-document retrieval mode
-      const doc = db.prepare(`
-        SELECT d.id, d.original_name, d.mime_type, e.raw_text,
-               e.invoice_number, e.invoice_date, e.supplier_name, e.customer_name,
-               e.subtotal, e.tax, e.total, e.currency, e.line_items_json
-        FROM documents d
-        LEFT JOIN extractions e ON d.id = e.document_id
-        WHERE d.id = ?
-      `).get(documentId) as any;
-
-      if (doc) {
-        retrievedDocs.push(doc);
-        sources.push({
-          documentId: doc.id,
-          filename: doc.original_name,
-          invoiceNumber: doc.invoice_number,
-          supplier: doc.supplier_name,
-          total: doc.total,
-          currency: doc.currency,
-          preview: (doc.raw_text || '').slice(0, 300),
-        });
-      }
-    } else {
-      // Semantic vector retrieval mode (RAG across document corpus)
-      const similarDocs = VectorService.searchSimilar(query, 6, 0.04);
-
-      if (similarDocs.length > 0) {
-        const placeholders = similarDocs.map(() => '?').join(',');
-        const docIds = similarDocs.map((s) => s.documentId);
-
-        const rows = db.prepare(`
+    if (!isIdentityQuery) {
+      if (documentId) {
+        // Direct single-document retrieval mode
+        const doc = db.prepare(`
           SELECT d.id, d.original_name, d.mime_type, e.raw_text,
                  e.invoice_number, e.invoice_date, e.supplier_name, e.customer_name,
                  e.subtotal, e.tax, e.total, e.currency, e.line_items_json
           FROM documents d
           LEFT JOIN extractions e ON d.id = e.document_id
-          WHERE d.id IN (${placeholders})
-        `).all(...docIds) as any[];
+          WHERE d.id = ?
+        `).get(documentId) as any;
 
-        for (const s of similarDocs) {
-          const match = rows.find((r) => r.id === s.documentId);
-          if (match) {
-            retrievedDocs.push(match);
-            sources.push({
-              documentId: match.id,
-              filename: match.original_name,
-              invoiceNumber: match.invoice_number,
-              supplier: match.supplier_name,
-              total: match.total,
-              currency: match.currency,
-              relevanceScore: s.score,
-              preview: s.preview,
-            });
+        if (doc) {
+          retrievedDocs.push(doc);
+          sources.push({
+            documentId: doc.id,
+            filename: doc.original_name,
+            invoiceNumber: doc.invoice_number,
+            supplier: doc.supplier_name,
+            total: doc.total,
+            currency: doc.currency,
+            preview: (doc.raw_text || '').slice(0, 300),
+          });
+        }
+      } else {
+        // Semantic vector retrieval mode (RAG across document corpus)
+        const similarDocs = VectorService.searchSimilar(query, 6, 0.04);
+
+        if (similarDocs.length > 0) {
+          const placeholders = similarDocs.map(() => '?').join(',');
+          const docIds = similarDocs.map((s) => s.documentId);
+
+          const rows = db.prepare(`
+            SELECT d.id, d.original_name, d.mime_type, e.raw_text,
+                   e.invoice_number, e.invoice_date, e.supplier_name, e.customer_name,
+                   e.subtotal, e.tax, e.total, e.currency, e.line_items_json
+            FROM documents d
+            LEFT JOIN extractions e ON d.id = e.document_id
+            WHERE d.id IN (${placeholders})
+          `).all(...docIds) as any[];
+
+          for (const s of similarDocs) {
+            const match = rows.find((r) => r.id === s.documentId);
+            if (match) {
+              retrievedDocs.push(match);
+              sources.push({
+                documentId: match.id,
+                filename: match.original_name,
+                invoiceNumber: match.invoice_number,
+                supplier: match.supplier_name,
+                total: match.total,
+                currency: match.currency,
+                relevanceScore: s.score,
+                preview: s.preview,
+              });
+            }
           }
         }
-      }
 
-      // Fallback: if vector search found nothing, retrieve latest processed documents
-      if (retrievedDocs.length === 0) {
-        retrievedDocs = db.prepare(`
-          SELECT d.id, d.original_name, d.mime_type, e.raw_text,
-                 e.invoice_number, e.invoice_date, e.supplier_name, e.customer_name,
-                 e.subtotal, e.tax, e.total, e.currency, e.line_items_json
-          FROM documents d
-          LEFT JOIN extractions e ON d.id = e.document_id
-          WHERE d.status IN ('COMPLETED', 'VERIFIED', 'NEEDS_REVIEW')
-          ORDER BY d.created_at DESC
-          LIMIT 6
-        `).all() as any[];
+        // Fallback: if vector search found nothing, retrieve latest processed documents
+        if (retrievedDocs.length === 0) {
+          retrievedDocs = db.prepare(`
+            SELECT d.id, d.original_name, d.mime_type, e.raw_text,
+                   e.invoice_number, e.invoice_date, e.supplier_name, e.customer_name,
+                   e.subtotal, e.tax, e.total, e.currency, e.line_items_json
+            FROM documents d
+            LEFT JOIN extractions e ON d.id = e.document_id
+            WHERE d.status IN ('COMPLETED', 'VERIFIED', 'NEEDS_REVIEW')
+            ORDER BY d.created_at DESC
+            LIMIT 6
+          `).all() as any[];
 
-        sources = retrievedDocs.map((d) => ({
-          documentId: d.id,
-          filename: d.original_name,
-          invoiceNumber: d.invoice_number,
-          supplier: d.supplier_name,
-          total: d.total,
-          currency: d.currency,
-          preview: (d.raw_text || '').slice(0, 300),
-        }));
+          sources = retrievedDocs.map((d) => ({
+            documentId: d.id,
+            filename: d.original_name,
+            invoiceNumber: d.invoice_number,
+            supplier: d.supplier_name,
+            total: d.total,
+            currency: d.currency,
+            preview: (d.raw_text || '').slice(0, 300),
+          }));
+        }
       }
     }
 
@@ -166,6 +193,9 @@ CRITICAL RULES:
 2. ZERO HALLUCINATION POLICY: Never invent amounts or numbers not in the documents.
 3. Be structured and well-formatted with clear headings and summaries.
 4. Support both English and Bengali (বাংলা) naturally based on the user's inquiry.
+
+SPECIAL RULE FOR IDENTITY & GREETINGS:
+If the user asks who you are (e.g. "who are you", "tumi ke", "what are you", "introduce yourself") or asks about your capabilities (e.g. "what can you do", "help"), introduce yourself as "DocIntel AI Copilot", explain that you are an Enterprise Financial Document Analyst built to extract, mathematically validate, cross-reconcile, and answer questions about invoices, POs, and financial documents with zero hallucination. Answer warmly in the user's language (English or Bengali).
 
 DOCUMENT CONTEXT:
 ${contextBlocks || 'No documents available in context.'}`;
@@ -211,6 +241,25 @@ ${contextBlocks || 'No documents available in context.'}`;
    * Builds rich structured card visual components for the frontend (Metrics, Data Tables, Highlights).
    */
   private static buildCardData(query: string, docs: any[]): ChatCardData | undefined {
+    // 0. Identity or Greeting Query
+    if (this.isIdentityOrGreetingQuery(query)) {
+      return {
+        type: 'summary',
+        title: 'DocIntel AI Copilot — System Identity & Capabilities',
+        metrics: [
+          { label: 'Core Role', value: 'Financial AI Copilot', color: 'cyan' },
+          { label: 'Precision Policy', value: 'Zero Hallucination', color: 'emerald' },
+          { label: 'Retrieval Engine', value: 'Vector Semantic RAG', color: 'indigo' },
+        ],
+        highlights: [
+          '📄 Multi-Format Ingestion: PDFs, Scanned Invoices (Tesseract OCR), Excel (.xlsx), and CSV files.',
+          '🧮 Mathematical Verification: Subtotal + Tax = Total and line item arithmetic audited with 100% precision.',
+          '🔍 Natural Language Q&A: Search and aggregate invoices across the entire repository in English or বাংলা.',
+          '🛡️ Cross-Document Reconciliation: 2-way matching between Invoices and Purchase Orders to catch discrepancy flags.',
+        ],
+      };
+    }
+
     if (docs.length === 0) return undefined;
     const qLower = query.toLowerCase();
 
@@ -375,6 +424,31 @@ ${contextBlocks || 'No documents available in context.'}`;
    */
   private static generateHeuristicAnswer(query: string, docs: any[], cardData?: ChatCardData): string {
     const qLower = query.toLowerCase();
+
+    // 0. Identity or Greeting Response
+    if (this.isIdentityOrGreetingQuery(query)) {
+      const isBangla = /tumi|apni|kemon|khoroch|ki|kore|porichoy/i.test(query);
+      if (isBangla) {
+        return `### আমি DocIntel AI Copilot 🤖\n\n` +
+          `আমি একটি **Enterprise AI Financial Document Intelligence Specialist**। এই সিস্টেমে আপলোড করা সমস্ত ইনভয়েস, রসিদ এবং আর্থিক ডকুমেন্টের তথ্য বিশ্লেষণ, অডিট এবং প্রশ্নের সঠিক উত্তর দেওয়ার জন্য আমাকে তৈরি করা হয়েছে।\n\n` +
+          `#### 🚀 আমি কী কী করতে পারি:\n` +
+          `• **মাল্টি-ফরম্যাট পার্সিং:** PDF, স্ক্যান করা ডকুমেন্টস (Tesseract.js OCR), Excel (.xlsx) এবং CSV ফাইল থেকে স্বয়ংক্রিয় তথ্য রিড করা।\n` +
+          `• **গাণিতিক ভ্যালিডেশন (Zero Hallucination):** সাবটোটাল, ট্যাক্স এবং আইটেম ক্যালকুলেশনে কোনো গরমিল বা ভুল আছে কি না তা নিখুঁতভাবে যাচাই করা।\n` +
+          `• **RAG সিম্যান্টিক সার্চ:** "মোট কত খরচ হয়েছে?", "কোন কোন সাপ্লায়ার আছে?" ইত্যাদি প্রশ্নের নির্ভুল উত্তর দেওয়া।\n` +
+          `• **ক্রস-ডকুমেন্ট রিকনসিলিয়েশন:** পারচেজ অর্ডার (PO) এবং ইনভয়েসের মধ্যে অমিল বা ডিসক্রিপেন্সি খুঁজে বের করা।\n\n` +
+          `*যেকোনো ইনভয়েস সম্পর্কে আমাকে ইংরেজিতে বা বাংলায় প্রশ্ন করতে পারেন!*`;
+      }
+
+      return `### Hello! I am DocIntel AI Copilot 🤖\n\n` +
+        `I am your **Enterprise AI Financial Document Intelligence Specialist & Copilot**.\n` +
+        `My mission is to assist finance teams, auditors, and accountants with invoice inspection, vendor management, mathematical validation, and compliance checks with **Zero Hallucination**.\n\n` +
+        `#### 🚀 Key Capabilities:\n` +
+        `• **Multi-Format Extraction:** Parse digital PDFs, scanned receipts (via Tesseract.js OCR), Excel spreadsheets, and CSV tables.\n` +
+        `• **Math Integrity Verification:** Automatically audit Subtotal + Tax = Total and line item arithmetic with 100% accuracy.\n` +
+        `• **Cross-Document RAG Search:** Answer complex natural language queries across all stored invoices in both English and Bengali (বাংলা).\n` +
+        `• **2-Way Reconciliation:** Cross-compare Invoices against Purchase Orders to detect discrepancy flags.\n\n` +
+        `*Try asking: "What is our total spend?", "List all suppliers", or "What is the breakdown of INV-2026-9081?"*`;
+    }
 
     if (docs.length === 0) {
       return "No matching financial records found in the database. Please upload an invoice or document first.";

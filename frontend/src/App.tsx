@@ -1646,6 +1646,16 @@ export function App() {
             <div className="flex flex-wrap gap-2 text-xs">
               <span className={`text-[11px] self-center ${isDarkMode ? 'text-slate-500' : 'text-slate-400'}`}>Suggested:</span>
               <button
+                onClick={() => handleSendChatMessage('Who are you and what can you do?')}
+                className={`px-2.5 py-1 rounded-full border text-[11px] transition ${
+                  isDarkMode
+                    ? 'bg-slate-950/60 border-slate-800 text-cyan-300 hover:border-cyan-400'
+                    : 'bg-white border-slate-200 text-cyan-700 hover:border-cyan-500'
+                }`}
+              >
+                🤖 Who are you? / পরিচয়
+              </button>
+              <button
                 onClick={() => handleSendChatMessage('What is the total spend across all invoices?')}
                 className={`px-2.5 py-1 rounded-full border text-[11px] transition ${
                   isDarkMode

@@ -21322,6 +21322,11 @@ function App() {
                       children: "Suggested:"
                     }, undefined, false, undefined, this),
                     /* @__PURE__ */ jsx_dev_runtime.jsxDEV("button", {
+                      onClick: () => handleSendChatMessage("Who are you and what can you do?"),
+                      className: `px-2.5 py-1 rounded-full border text-[11px] transition ${isDarkMode ? "bg-slate-950/60 border-slate-800 text-cyan-300 hover:border-cyan-400" : "bg-white border-slate-200 text-cyan-700 hover:border-cyan-500"}`,
+                      children: "\uD83E\uDD16 Who are you? / পরিচয়"
+                    }, undefined, false, undefined, this),
+                    /* @__PURE__ */ jsx_dev_runtime.jsxDEV("button", {
                       onClick: () => handleSendChatMessage("What is the total spend across all invoices?"),
                       className: `px-2.5 py-1 rounded-full border text-[11px] transition ${isDarkMode ? "bg-slate-950/60 border-slate-800 text-slate-300 hover:border-cyan-500 hover:text-cyan-300" : "bg-white border-slate-200 text-slate-700 hover:border-cyan-500"}`,
                       children: "\uD83D\uDCB0 Total Spend Summary"
