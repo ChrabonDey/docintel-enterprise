@@ -1,0 +1,71 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 4 0 R /Resources << /Font << /F1 5 0 R /F2 6 0 R >> >> >>
+endobj
+4 0 obj
+<< /Length 3094 >>
+stream
+BT /F1 10 Tf 45 750 Td (=========================================================================) Tj ET
+BT /F2 14 Tf 45 735 Td (                    TECHNOVA GLOBAL SOLUTIONS LTD.                      ) Tj ET
+BT /F1 10 Tf 45 720 Td (               Enterprise Cloud and AI Intelligence Systems             ) Tj ET
+BT /F1 9 Tf 45 708 Td (            742 Evergreen Terrace, Suite 500, New York, NY 10001        ) Tj ET
+BT /F1 9 Tf 45 696 Td (           VAT/Tax ID: US-987654321  |  Email: billing@technova.com     ) Tj ET
+BT /F1 10 Tf 45 684 Td (=========================================================================) Tj ET
+BT /F2 10 Tf 45 665 Td (Supplier: TechNova Global Solutions Ltd) Tj ET
+BT /F2 11 Tf 45 650 Td (Invoice Number: INV-2026-9081) Tj ET
+BT /F1 10 Tf 45 635 Td (Invoice Date: 2026-11-19) Tj ET
+BT /F1 10 Tf 45 620 Td (Payment Terms: Net 30 Days \(Due 2026-12-19\)) Tj ET
+BT /F1 10 Tf 45 605 Td (Purchase Order: PO-2026-8874) Tj ET
+BT /F1 10 Tf 45 590 Td (Currency: USD) Tj ET
+BT /F2 11 Tf 45 565 Td (Bill To: Omega Enterprise Corp) Tj ET
+BT /F1 9 Tf 45 550 Td (Attn: Accounts Payable and Financial Operations) Tj ET
+BT /F1 9 Tf 45 538 Td (1200 Innovation Parkway, Suite 800, Austin, TX 78701) Tj ET
+BT /F1 9 Tf 45 526 Td (Email: finance@omegaenterprise.com) Tj ET
+BT /F1 10 Tf 45 504 Td (-------------------------------------------------------------------------) Tj ET
+BT /F2 10 Tf 45 492 Td (Description                                    Qty   Unit Price    Total) Tj ET
+BT /F1 10 Tf 45 480 Td (-------------------------------------------------------------------------) Tj ET
+BT /F1 10 Tf 45 462 Td (AI Document Intelligence Platform               1       2400.00  2400.00) Tj ET
+BT /F1 10 Tf 45 444 Td (Cloud GPU Cluster Hours H100 NVLink           200          3.50   700.00) Tj ET
+BT /F1 10 Tf 45 426 Td (Custom LLM Fine Tuning Service                  1       1500.00  1500.00) Tj ET
+BT /F1 10 Tf 45 408 Td (Enterprise SLA and Priority Support             1        400.00   400.00) Tj ET
+BT /F1 10 Tf 45 390 Td (-------------------------------------------------------------------------) Tj ET
+BT /F2 11 Tf 45 370 Td (                                            Subtotal: $5000.00) Tj ET
+BT /F1 10 Tf 45 352 Td (                                            Tax: $425.00) Tj ET
+BT /F2 12 Tf 45 330 Td (                                            Total: $5425.00) Tj ET
+BT /F1 10 Tf 45 314 Td (=========================================================================) Tj ET
+BT /F2 10 Tf 45 285 Td (PAYMENT INSTRUCTIONS \(WIRE / ACH TRANSFER\):) Tj ET
+BT /F1 9 Tf 45 270 Td (Bank Name     : Silicon Valley Commerce Bank) Tj ET
+BT /F1 9 Tf 45 257 Td (Account Name  : TechNova Global Solutions Ltd) Tj ET
+BT /F1 9 Tf 45 244 Td (Account Number: 987654321000) Tj ET
+BT /F1 9 Tf 45 231 Td (Routing Number: 121000358) Tj ET
+BT /F1 9 Tf 45 218 Td (SWIFT / BIC   : SVCBUS33XXX) Tj ET
+BT /F1 9 Tf 45 200 Td (Please reference Invoice INV-2026-9081 in wire transmission memo.) Tj ET
+BT /F1 9 Tf 45 155 Td (Thank you for your business! For inquiries, contact support@technova.com) Tj ET
+endstream
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+6 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
+endobj
+xref
+0 7
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000251 00000 n 
+0000003397 00000 n 
+0000003467 00000 n 
+trailer
+<< /Size 7 /Root 1 0 R >>
+startxref
+3542
+%%EOF
