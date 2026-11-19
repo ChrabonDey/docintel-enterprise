@@ -22,6 +22,9 @@ import {
   Moon,
   Menu,
   X,
+  Bot,
+  Send,
+  Sparkles,
 } from 'lucide-react';
 
 interface DocumentItem {
@@ -43,7 +46,7 @@ interface DocumentItem {
 }
 
 export function App() {
-  const [activeTab, setActiveTab] = useState<'documents' | 'upload' | 'crossverify' | 'search' | 'analytics'>('documents');
+  const [activeTab, setActiveTab] = useState<'documents' | 'upload' | 'crossverify' | 'search' | 'analytics' | 'chat'>('documents');
   const [documents, setDocuments] = useState<DocumentItem[]>([]);
   const [selectedDoc, setSelectedDoc] = useState<any | null>(null);
   const [token, setToken] = useState<string>('');
@@ -63,6 +66,17 @@ export function App() {
 
   // Analytics state
   const [analytics, setAnalytics] = useState<any | null>(null);
+
+  // AI Chat / Copilot state
+  const [chatMessages, setChatMessages] = useState<Array<{ role: 'user' | 'assistant'; content: string; sources?: any[]; modelUsed?: string }>>([
+    {
+      role: 'assistant',
+      content: 'Hello! I am your Enterprise Financial Copilot (powered by LLM & RAG vector search). Ask me anything about your uploaded invoices, line items, supplier totals, or compliance checks in English or Bengali (বাংলা)!',
+    },
+  ]);
+  const [chatInput, setChatInput] = useState('');
+  const [chatLoading, setChatLoading] = useState(false);
+  const [chatDocFilter, setChatDocFilter] = useState('');
 
   // Manual correction modal state
   const [correctionModalOpen, setCorrectionModalOpen] = useState(false);
@@ -435,6 +449,62 @@ export function App() {
     }
   }
 
+  async function handleSendChatMessage(textOverride?: string) {
+    const text = (textOverride || chatInput).trim();
+    if (!text || chatLoading) return;
+
+    const newHistory = [...chatMessages, { role: 'user' as const, content: text }];
+    setChatMessages(newHistory);
+    setChatInput('');
+    setChatLoading(true);
+
+    try {
+      const res = await fetch('/api/v1/chat/query', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          query: text,
+          documentId: chatDocFilter || undefined,
+          history: chatMessages.slice(-6).map((m) => ({ role: m.role, content: m.content })),
+        }),
+      });
+
+      const json = await res.json();
+      if (json.success && json.data) {
+        setChatMessages((prev) => [
+          ...prev,
+          {
+            role: 'assistant',
+            content: json.data.answer,
+            sources: json.data.sources,
+            modelUsed: json.data.modelUsed,
+          },
+        ]);
+      } else {
+        setChatMessages((prev) => [
+          ...prev,
+          {
+            role: 'assistant',
+            content: `Error: ${json.error?.message || 'Failed to process inquiry with AI Copilot.'}`,
+          },
+        ]);
+      }
+    } catch (err: any) {
+      setChatMessages((prev) => [
+        ...prev,
+        {
+          role: 'assistant',
+          content: `Network error reaching AI Copilot: ${err.message}`,
+        },
+      ]);
+    } finally {
+      setChatLoading(false);
+    }
+  }
+
   return (
     <div className={`min-h-screen flex flex-col font-sans transition-colors duration-200 ${
       isDarkMode ? 'bg-slate-900 text-slate-100' : 'bg-slate-50 text-slate-800'
@@ -516,6 +586,17 @@ export function App() {
             >
               <BarChart3 className="w-4 h-4" />
               <span>Analytics</span>
+            </button>
+            <button
+              onClick={() => setActiveTab('chat')}
+              className={`px-3 py-1.5 rounded-md text-xs font-medium flex items-center space-x-1.5 transition ${
+                activeTab === 'chat'
+                  ? 'bg-gradient-to-r from-cyan-500 to-indigo-600 text-white shadow'
+                  : isDarkMode ? 'text-cyan-400 hover:text-cyan-200' : 'text-cyan-600 hover:text-cyan-900'
+              }`}
+            >
+              <Bot className="w-4 h-4" />
+              <span>AI Copilot</span>
             </button>
           </nav>
 
@@ -624,6 +705,15 @@ export function App() {
             >
               <BarChart3 className="w-4 h-4" />
               <span>System Analytics</span>
+            </button>
+            <button
+              onClick={() => { setActiveTab('chat'); setMobileMenuOpen(false); }}
+              className={`w-full px-3 py-2 rounded-lg text-xs font-medium flex items-center space-x-2 ${
+                activeTab === 'chat' ? 'bg-indigo-600 text-white' : isDarkMode ? 'text-cyan-300' : 'text-cyan-700'
+              }`}
+            >
+              <Bot className="w-4 h-4" />
+              <span>AI Copilot</span>
             </button>
           </div>
         )}
@@ -1399,6 +1489,183 @@ export function App() {
                 <div className={`text-[10px] font-medium mt-1 ${isDarkMode ? 'text-slate-400' : 'text-slate-500'}`}>Validated Currency Volume</div>
               </div>
             </div>
+          </div>
+        )}
+
+        {/* VIEW 6: AI FINANCIAL COPILOT / RAG CHAT */}
+        {activeTab === 'chat' && (
+          <div className="flex flex-col h-[calc(100vh-12rem)] min-h-[500px] max-w-4xl mx-auto space-y-4">
+            {/* Header info */}
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 pb-2 border-b border-slate-800/40">
+              <div>
+                <div className="flex items-center space-x-2">
+                  <div className="p-1.5 rounded-lg bg-gradient-to-tr from-cyan-500 to-indigo-600 text-white">
+                    <Bot className="w-5 h-5" />
+                  </div>
+                  <h2 className={`text-lg font-bold ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
+                    AI Financial Document Assistant
+                  </h2>
+                  <span className="text-[10px] px-2 py-0.5 rounded-full font-mono bg-cyan-950 border border-cyan-800 text-cyan-400">
+                    gpt-6.1-sol / RAG
+                  </span>
+                </div>
+                <p className={`text-xs ${isDarkMode ? 'text-slate-400' : 'text-slate-500'} mt-0.5`}>
+                  Multi-document question answering with vector semantic context retrieval
+                </p>
+              </div>
+
+              {/* Target Document Selector */}
+              <div className="flex items-center space-x-2 w-full sm:w-auto">
+                <span className={`text-[11px] shrink-0 ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>Context:</span>
+                <select
+                  value={chatDocFilter}
+                  onChange={(e) => setChatDocFilter(e.target.value)}
+                  className={`text-xs rounded-lg px-2.5 py-1.5 border w-full sm:w-56 focus:outline-none focus:ring-1 focus:ring-cyan-500 ${
+                    isDarkMode ? 'bg-slate-900 border-slate-800 text-slate-200' : 'bg-white border-slate-200 text-slate-800'
+                  }`}
+                >
+                  <option value="">All Uploaded Documents (Global RAG)</option>
+                  {documents.map((d) => (
+                    <option key={d.id} value={d.id}>
+                      {d.original_name} {d.invoice_number ? `(${d.invoice_number})` : ''}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
+
+            {/* Quick Prompt Chips */}
+            <div className="flex flex-wrap gap-2 text-xs">
+              <span className={`text-[11px] self-center ${isDarkMode ? 'text-slate-500' : 'text-slate-400'}`}>Suggested:</span>
+              <button
+                onClick={() => handleSendChatMessage('What is the total spend across all invoices?')}
+                className={`px-2.5 py-1 rounded-full border text-[11px] transition ${
+                  isDarkMode
+                    ? 'bg-slate-950/60 border-slate-800 text-slate-300 hover:border-cyan-500 hover:text-cyan-300'
+                    : 'bg-white border-slate-200 text-slate-700 hover:border-cyan-500'
+                }`}
+              >
+                💰 Total Spend Summary
+              </button>
+              <button
+                onClick={() => handleSendChatMessage('List all supplier names and their invoice numbers.')}
+                className={`px-2.5 py-1 rounded-full border text-[11px] transition ${
+                  isDarkMode
+                    ? 'bg-slate-950/60 border-slate-800 text-slate-300 hover:border-cyan-500 hover:text-cyan-300'
+                    : 'bg-white border-slate-200 text-slate-700 hover:border-cyan-500'
+                }`}
+              >
+                🏢 List All Suppliers
+              </button>
+              <button
+                onClick={() => handleSendChatMessage('amader sobcheye beshi khoroch kon supplier er kache hoise?')}
+                className={`px-2.5 py-1 rounded-full border text-[11px] transition ${
+                  isDarkMode
+                    ? 'bg-slate-950/60 border-slate-800 text-slate-300 hover:border-cyan-500 hover:text-cyan-300'
+                    : 'bg-white border-slate-200 text-slate-700 hover:border-cyan-500'
+                }`}
+              >
+                🇧🇩 কোন সাপ্লায়ারে সবচেয়ে বেশি খরচ?
+              </button>
+            </div>
+
+            {/* Chat Messages Scroll Container */}
+            <div className={`flex-1 overflow-y-auto p-4 rounded-2xl border space-y-4 ${
+              isDarkMode ? 'bg-slate-950/80 border-slate-800' : 'bg-slate-100/70 border-slate-200'
+            }`}>
+              {chatMessages.map((msg, index) => (
+                <div
+                  key={index}
+                  className={`flex items-start space-x-3 ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
+                >
+                  {msg.role === 'assistant' && (
+                    <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-cyan-500 to-indigo-600 flex items-center justify-center shrink-0 shadow-md">
+                      <Sparkles className="w-4 h-4 text-white" />
+                    </div>
+                  )}
+
+                  <div className={`max-w-[85%] rounded-2xl p-4 text-xs leading-relaxed ${
+                    msg.role === 'user'
+                      ? 'bg-indigo-600 text-white rounded-tr-none'
+                      : isDarkMode
+                      ? 'bg-slate-900 border border-slate-800 text-slate-200 rounded-tl-none shadow-sm'
+                      : 'bg-white border border-slate-200 text-slate-800 rounded-tl-none shadow-xs'
+                  }`}>
+                    {/* Message Body */}
+                    <div className="whitespace-pre-wrap">{msg.content}</div>
+
+                    {/* Grounded Source Citations */}
+                    {msg.sources && msg.sources.length > 0 && (
+                      <div className="mt-3 pt-3 border-t border-slate-800/60 text-[11px]">
+                        <span className="font-semibold text-cyan-400">Grounded Document Sources:</span>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-1.5">
+                          {msg.sources.map((src, sIdx) => (
+                            <div
+                              key={sIdx}
+                              className={`p-2 rounded-lg border text-[10px] ${
+                                isDarkMode ? 'bg-slate-950 border-slate-800/80 text-slate-300' : 'bg-slate-50 border-slate-200 text-slate-600'
+                              }`}
+                            >
+                              <div className="font-semibold text-slate-200 truncate">{src.filename}</div>
+                              <div className="text-slate-400">
+                                {src.supplier ? `${src.supplier} • ` : ''}${src.total ? `$${src.total}` : ''}
+                                {src.relevanceScore ? ` (Match: ${Math.round(src.relevanceScore * 100)}%)` : ''}
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Model Tag */}
+                    {msg.modelUsed && (
+                      <div className="mt-2 text-[10px] text-slate-500 text-right font-mono">
+                        via {msg.modelUsed}
+                      </div>
+                    )}
+                  </div>
+                </div>
+              ))}
+
+              {chatLoading && (
+                <div className="flex items-center space-x-3 text-xs text-cyan-400 font-medium">
+                  <div className="w-8 h-8 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center animate-pulse">
+                    <Bot className="w-4 h-4 text-cyan-400" />
+                  </div>
+                  <span>DocIntel AI Copilot is inspecting documents and generating response...</span>
+                </div>
+              )}
+            </div>
+
+            {/* Chat Input Bar */}
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                handleSendChatMessage();
+              }}
+              className="flex items-center space-x-2"
+            >
+              <input
+                type="text"
+                value={chatInput}
+                onChange={(e) => setChatInput(e.target.value)}
+                placeholder="Ask about any invoice amount, line item, or vendor query in English or বাংলা..."
+                disabled={chatLoading}
+                className={`flex-1 rounded-xl px-4 py-3 text-xs border focus:outline-none focus:ring-2 focus:ring-cyan-500 transition ${
+                  isDarkMode
+                    ? 'bg-slate-950 border-slate-800 text-white placeholder-slate-500'
+                    : 'bg-white border-slate-200 text-slate-900 placeholder-slate-400 shadow-xs'
+                }`}
+              />
+              <button
+                type="submit"
+                disabled={chatLoading || !chatInput.trim()}
+                className="px-5 py-3 rounded-xl bg-gradient-to-r from-cyan-500 to-indigo-600 hover:from-cyan-400 hover:to-indigo-500 disabled:opacity-50 text-white font-medium text-xs flex items-center space-x-2 transition shadow-lg shadow-cyan-500/20 cursor-pointer"
+              >
+                <span>Send</span>
+                <Send className="w-3.5 h-3.5" />
+              </button>
+            </form>
           </div>
         )}
         </>

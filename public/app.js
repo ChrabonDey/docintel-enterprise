@@ -19050,8 +19050,28 @@ var __iconData4 = {
 };
 __iconData4.node;
 var PenLine = createLucideIcon(__iconData4);
-// node_modules/lucide-react/dist/esm/icons/triangle-exclamation-point.mjs
+// node_modules/lucide-react/dist/esm/icons/sparkles.mjs
 var __iconData5 = {
+  name: "sparkles",
+  size: 24,
+  node: [
+    [
+      "path",
+      {
+        d: "M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z",
+        key: "1s2grr"
+      }
+    ],
+    ["path", { d: "M20 2v4", key: "1rf3ol" }],
+    ["path", { d: "M22 4h-4", key: "gwowj6" }],
+    ["circle", { cx: "4", cy: "20", r: "2", key: "6kqj1y" }]
+  ],
+  aliases: ["stars"]
+};
+__iconData5.node;
+var Sparkles = createLucideIcon(__iconData5);
+// node_modules/lucide-react/dist/esm/icons/triangle-exclamation-point.mjs
+var __iconData6 = {
   name: "triangle-exclamation-point",
   size: 24,
   node: [
@@ -19067,10 +19087,10 @@ var __iconData5 = {
   ],
   aliases: ["alert-triangle", "triangle-alert"]
 };
-__iconData5.node;
-var TriangleExclamationPoint = createLucideIcon(__iconData5);
+__iconData6.node;
+var TriangleExclamationPoint = createLucideIcon(__iconData6);
 // node_modules/lucide-react/dist/esm/icons/arrow-right.mjs
-var __iconData6 = {
+var __iconData7 = {
   name: "arrow-right",
   size: 24,
   node: [
@@ -19078,10 +19098,25 @@ var __iconData6 = {
     ["path", { d: "m12 5 7 7-7 7", key: "xquz4c" }]
   ]
 };
-__iconData6.node;
-var ArrowRight = createLucideIcon(__iconData6);
+__iconData7.node;
+var ArrowRight = createLucideIcon(__iconData7);
+// node_modules/lucide-react/dist/esm/icons/bot.mjs
+var __iconData8 = {
+  name: "bot",
+  size: 24,
+  node: [
+    ["path", { d: "M12 8V4H8", key: "hb8ula" }],
+    ["rect", { width: "16", height: "12", x: "4", y: "8", rx: "2", key: "enze0r" }],
+    ["path", { d: "M2 14h2", key: "vft8re" }],
+    ["path", { d: "M20 14h2", key: "4cs60a" }],
+    ["path", { d: "M15 13v2", key: "1xurst" }],
+    ["path", { d: "M9 13v2", key: "rq6x2g" }]
+  ]
+};
+__iconData8.node;
+var Bot = createLucideIcon(__iconData8);
 // node_modules/lucide-react/dist/esm/icons/eye.mjs
-var __iconData7 = {
+var __iconData9 = {
   name: "eye",
   size: 24,
   node: [
@@ -19095,10 +19130,10 @@ var __iconData7 = {
     ["circle", { cx: "12", cy: "12", r: "3", key: "1v7zrd" }]
   ]
 };
-__iconData7.node;
-var Eye = createLucideIcon(__iconData7);
+__iconData9.node;
+var Eye = createLucideIcon(__iconData9);
 // node_modules/lucide-react/dist/esm/icons/file-text.mjs
-var __iconData8 = {
+var __iconData10 = {
   name: "file-text",
   size: 24,
   node: [
@@ -19115,10 +19150,10 @@ var __iconData8 = {
     ["path", { d: "M16 17H8", key: "z1uh3a" }]
   ]
 };
-__iconData8.node;
-var FileText = createLucideIcon(__iconData8);
+__iconData10.node;
+var FileText = createLucideIcon(__iconData10);
 // node_modules/lucide-react/dist/esm/icons/git-compare.mjs
-var __iconData9 = {
+var __iconData11 = {
   name: "git-compare",
   size: 24,
   node: [
@@ -19128,10 +19163,10 @@ var __iconData9 = {
     ["path", { d: "M11 18H8a2 2 0 0 1-2-2V9", key: "19pyzm" }]
   ]
 };
-__iconData9.node;
-var GitCompare = createLucideIcon(__iconData9);
+__iconData11.node;
+var GitCompare = createLucideIcon(__iconData11);
 // node_modules/lucide-react/dist/esm/icons/lock.mjs
-var __iconData10 = {
+var __iconData12 = {
   name: "lock",
   size: 24,
   node: [
@@ -19139,10 +19174,10 @@ var __iconData10 = {
     ["path", { d: "M7 11V7a5 5 0 0 1 10 0v4", key: "fwvmzm" }]
   ]
 };
-__iconData10.node;
-var Lock = createLucideIcon(__iconData10);
+__iconData12.node;
+var Lock = createLucideIcon(__iconData12);
 // node_modules/lucide-react/dist/esm/icons/menu.mjs
-var __iconData11 = {
+var __iconData13 = {
   name: "menu",
   size: 24,
   node: [
@@ -19151,10 +19186,10 @@ var __iconData11 = {
     ["path", { d: "M4 19h16", key: "1djgab" }]
   ]
 };
-__iconData11.node;
-var Menu = createLucideIcon(__iconData11);
+__iconData13.node;
+var Menu = createLucideIcon(__iconData13);
 // node_modules/lucide-react/dist/esm/icons/moon.mjs
-var __iconData12 = {
+var __iconData14 = {
   name: "moon",
   size: 24,
   node: [
@@ -19167,10 +19202,10 @@ var __iconData12 = {
     ]
   ]
 };
-__iconData12.node;
-var Moon = createLucideIcon(__iconData12);
+__iconData14.node;
+var Moon = createLucideIcon(__iconData14);
 // node_modules/lucide-react/dist/esm/icons/refresh-cw.mjs
-var __iconData13 = {
+var __iconData15 = {
   name: "refresh-cw",
   size: 24,
   node: [
@@ -19180,10 +19215,10 @@ var __iconData13 = {
     ["path", { d: "M8 16H3v5", key: "1cv678" }]
   ]
 };
-__iconData13.node;
-var RefreshCw = createLucideIcon(__iconData13);
+__iconData15.node;
+var RefreshCw = createLucideIcon(__iconData15);
 // node_modules/lucide-react/dist/esm/icons/search.mjs
-var __iconData14 = {
+var __iconData16 = {
   name: "search",
   size: 24,
   node: [
@@ -19191,10 +19226,27 @@ var __iconData14 = {
     ["circle", { cx: "11", cy: "11", r: "8", key: "4ej97u" }]
   ]
 };
-__iconData14.node;
-var Search = createLucideIcon(__iconData14);
+__iconData16.node;
+var Search = createLucideIcon(__iconData16);
+// node_modules/lucide-react/dist/esm/icons/send.mjs
+var __iconData17 = {
+  name: "send",
+  size: 24,
+  node: [
+    [
+      "path",
+      {
+        d: "M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z",
+        key: "1ffxy3"
+      }
+    ],
+    ["path", { d: "m21.854 2.147-10.94 10.939", key: "12cjpa" }]
+  ]
+};
+__iconData17.node;
+var Send = createLucideIcon(__iconData17);
 // node_modules/lucide-react/dist/esm/icons/shield-check.mjs
-var __iconData15 = {
+var __iconData18 = {
   name: "shield-check",
   size: 24,
   node: [
@@ -19208,10 +19260,10 @@ var __iconData15 = {
     ["path", { d: "m9 12 2 2 4-4", key: "dzmm74" }]
   ]
 };
-__iconData15.node;
-var ShieldCheck = createLucideIcon(__iconData15);
+__iconData18.node;
+var ShieldCheck = createLucideIcon(__iconData18);
 // node_modules/lucide-react/dist/esm/icons/sun.mjs
-var __iconData16 = {
+var __iconData19 = {
   name: "sun",
   size: 24,
   node: [
@@ -19226,10 +19278,10 @@ var __iconData16 = {
     ["path", { d: "m19.07 4.93-1.41 1.41", key: "1shlcs" }]
   ]
 };
-__iconData16.node;
-var Sun = createLucideIcon(__iconData16);
+__iconData19.node;
+var Sun = createLucideIcon(__iconData19);
 // node_modules/lucide-react/dist/esm/icons/upload.mjs
-var __iconData17 = {
+var __iconData20 = {
   name: "upload",
   size: 24,
   node: [
@@ -19238,10 +19290,10 @@ var __iconData17 = {
     ["path", { d: "M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4", key: "ih7n3h" }]
   ]
 };
-__iconData17.node;
-var Upload = createLucideIcon(__iconData17);
+__iconData20.node;
+var Upload = createLucideIcon(__iconData20);
 // node_modules/lucide-react/dist/esm/icons/x.mjs
-var __iconData18 = {
+var __iconData21 = {
   name: "x",
   size: 24,
   node: [
@@ -19249,8 +19301,8 @@ var __iconData18 = {
     ["path", { d: "m6 6 12 12", key: "d8bk6v" }]
   ]
 };
-__iconData18.node;
-var X = createLucideIcon(__iconData18);
+__iconData21.node;
+var X = createLucideIcon(__iconData21);
 // frontend/src/App.tsx
 var jsx_dev_runtime = __toESM(require_jsx_dev_runtime(), 1);
 function App() {
@@ -19268,6 +19320,15 @@ function App() {
   const [searchMode, setSearchMode] = import_react4.useState("hybrid");
   const [searchResults, setSearchResults] = import_react4.useState([]);
   const [analytics, setAnalytics] = import_react4.useState(null);
+  const [chatMessages, setChatMessages] = import_react4.useState([
+    {
+      role: "assistant",
+      content: "Hello! I am your Enterprise Financial Copilot (powered by LLM & RAG vector search). Ask me anything about your uploaded invoices, line items, supplier totals, or compliance checks in English or Bengali (বাংলা)!"
+    }
+  ]);
+  const [chatInput, setChatInput] = import_react4.useState("");
+  const [chatLoading, setChatLoading] = import_react4.useState(false);
+  const [chatDocFilter, setChatDocFilter] = import_react4.useState("");
   const [correctionModalOpen, setCorrectionModalOpen] = import_react4.useState(false);
   const [editFields, setEditFields] = import_react4.useState({});
   const [editReason, setEditReason] = import_react4.useState("");
@@ -19605,6 +19666,59 @@ function App() {
       setLoading(false);
     }
   }
+  async function handleSendChatMessage(textOverride) {
+    const text = (textOverride || chatInput).trim();
+    if (!text || chatLoading)
+      return;
+    const newHistory = [...chatMessages, { role: "user", content: text }];
+    setChatMessages(newHistory);
+    setChatInput("");
+    setChatLoading(true);
+    try {
+      const res = await fetch("/api/v1/chat/query", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`
+        },
+        body: JSON.stringify({
+          query: text,
+          documentId: chatDocFilter || undefined,
+          history: chatMessages.slice(-6).map((m) => ({ role: m.role, content: m.content }))
+        })
+      });
+      const json = await res.json();
+      if (json.success && json.data) {
+        setChatMessages((prev) => [
+          ...prev,
+          {
+            role: "assistant",
+            content: json.data.answer,
+            sources: json.data.sources,
+            modelUsed: json.data.modelUsed
+          }
+        ]);
+      } else {
+        setChatMessages((prev) => [
+          ...prev,
+          {
+            role: "assistant",
+            content: `Error: ${json.error?.message || "Failed to process inquiry with AI Copilot."}`
+          }
+        ]);
+      }
+    } catch (err) {
+      setChatMessages((prev) => [
+        ...prev,
+        {
+          role: "assistant",
+          content: `Network error reaching AI Copilot: ${err.message}`
+        }
+      ]);
+    } finally {
+      setChatLoading(false);
+    }
+  }
   return /* @__PURE__ */ jsx_dev_runtime.jsxDEV("div", {
     className: `min-h-screen flex flex-col font-sans transition-colors duration-200 ${isDarkMode ? "bg-slate-900 text-slate-100" : "bg-slate-50 text-slate-800"}`,
     children: [
@@ -19697,6 +19811,18 @@ function App() {
                       }, undefined, false, undefined, this),
                       /* @__PURE__ */ jsx_dev_runtime.jsxDEV("span", {
                         children: "Analytics"
+                      }, undefined, false, undefined, this)
+                    ]
+                  }, undefined, true, undefined, this),
+                  /* @__PURE__ */ jsx_dev_runtime.jsxDEV("button", {
+                    onClick: () => setActiveTab("chat"),
+                    className: `px-3 py-1.5 rounded-md text-xs font-medium flex items-center space-x-1.5 transition ${activeTab === "chat" ? "bg-gradient-to-r from-cyan-500 to-indigo-600 text-white shadow" : isDarkMode ? "text-cyan-400 hover:text-cyan-200" : "text-cyan-600 hover:text-cyan-900"}`,
+                    children: [
+                      /* @__PURE__ */ jsx_dev_runtime.jsxDEV(Bot, {
+                        className: "w-4 h-4"
+                      }, undefined, false, undefined, this),
+                      /* @__PURE__ */ jsx_dev_runtime.jsxDEV("span", {
+                        children: "AI Copilot"
                       }, undefined, false, undefined, this)
                     ]
                   }, undefined, true, undefined, this)
@@ -19845,6 +19971,21 @@ function App() {
                   }, undefined, false, undefined, this),
                   /* @__PURE__ */ jsx_dev_runtime.jsxDEV("span", {
                     children: "System Analytics"
+                  }, undefined, false, undefined, this)
+                ]
+              }, undefined, true, undefined, this),
+              /* @__PURE__ */ jsx_dev_runtime.jsxDEV("button", {
+                onClick: () => {
+                  setActiveTab("chat");
+                  setMobileMenuOpen(false);
+                },
+                className: `w-full px-3 py-2 rounded-lg text-xs font-medium flex items-center space-x-2 ${activeTab === "chat" ? "bg-indigo-600 text-white" : isDarkMode ? "text-cyan-300" : "text-cyan-700"}`,
+                children: [
+                  /* @__PURE__ */ jsx_dev_runtime.jsxDEV(Bot, {
+                    className: "w-4 h-4"
+                  }, undefined, false, undefined, this),
+                  /* @__PURE__ */ jsx_dev_runtime.jsxDEV("span", {
+                    children: "AI Copilot"
                   }, undefined, false, undefined, this)
                 ]
               }, undefined, true, undefined, this)
@@ -20979,6 +21120,201 @@ function App() {
                         /* @__PURE__ */ jsx_dev_runtime.jsxDEV("div", {
                           className: `text-[10px] font-medium mt-1 ${isDarkMode ? "text-slate-400" : "text-slate-500"}`,
                           children: "Validated Currency Volume"
+                        }, undefined, false, undefined, this)
+                      ]
+                    }, undefined, true, undefined, this)
+                  ]
+                }, undefined, true, undefined, this)
+              ]
+            }, undefined, true, undefined, this),
+            activeTab === "chat" && /* @__PURE__ */ jsx_dev_runtime.jsxDEV("div", {
+              className: "flex flex-col h-[calc(100vh-12rem)] min-h-[500px] max-w-4xl mx-auto space-y-4",
+              children: [
+                /* @__PURE__ */ jsx_dev_runtime.jsxDEV("div", {
+                  className: "flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 pb-2 border-b border-slate-800/40",
+                  children: [
+                    /* @__PURE__ */ jsx_dev_runtime.jsxDEV("div", {
+                      children: [
+                        /* @__PURE__ */ jsx_dev_runtime.jsxDEV("div", {
+                          className: "flex items-center space-x-2",
+                          children: [
+                            /* @__PURE__ */ jsx_dev_runtime.jsxDEV("div", {
+                              className: "p-1.5 rounded-lg bg-gradient-to-tr from-cyan-500 to-indigo-600 text-white",
+                              children: /* @__PURE__ */ jsx_dev_runtime.jsxDEV(Bot, {
+                                className: "w-5 h-5"
+                              }, undefined, false, undefined, this)
+                            }, undefined, false, undefined, this),
+                            /* @__PURE__ */ jsx_dev_runtime.jsxDEV("h2", {
+                              className: `text-lg font-bold ${isDarkMode ? "text-white" : "text-slate-900"}`,
+                              children: "AI Financial Document Assistant"
+                            }, undefined, false, undefined, this),
+                            /* @__PURE__ */ jsx_dev_runtime.jsxDEV("span", {
+                              className: "text-[10px] px-2 py-0.5 rounded-full font-mono bg-cyan-950 border border-cyan-800 text-cyan-400",
+                              children: "gpt-6.1-sol / RAG"
+                            }, undefined, false, undefined, this)
+                          ]
+                        }, undefined, true, undefined, this),
+                        /* @__PURE__ */ jsx_dev_runtime.jsxDEV("p", {
+                          className: `text-xs ${isDarkMode ? "text-slate-400" : "text-slate-500"} mt-0.5`,
+                          children: "Multi-document question answering with vector semantic context retrieval"
+                        }, undefined, false, undefined, this)
+                      ]
+                    }, undefined, true, undefined, this),
+                    /* @__PURE__ */ jsx_dev_runtime.jsxDEV("div", {
+                      className: "flex items-center space-x-2 w-full sm:w-auto",
+                      children: [
+                        /* @__PURE__ */ jsx_dev_runtime.jsxDEV("span", {
+                          className: `text-[11px] shrink-0 ${isDarkMode ? "text-slate-400" : "text-slate-600"}`,
+                          children: "Context:"
+                        }, undefined, false, undefined, this),
+                        /* @__PURE__ */ jsx_dev_runtime.jsxDEV("select", {
+                          value: chatDocFilter,
+                          onChange: (e) => setChatDocFilter(e.target.value),
+                          className: `text-xs rounded-lg px-2.5 py-1.5 border w-full sm:w-56 focus:outline-none focus:ring-1 focus:ring-cyan-500 ${isDarkMode ? "bg-slate-900 border-slate-800 text-slate-200" : "bg-white border-slate-200 text-slate-800"}`,
+                          children: [
+                            /* @__PURE__ */ jsx_dev_runtime.jsxDEV("option", {
+                              value: "",
+                              children: "All Uploaded Documents (Global RAG)"
+                            }, undefined, false, undefined, this),
+                            documents.map((d) => /* @__PURE__ */ jsx_dev_runtime.jsxDEV("option", {
+                              value: d.id,
+                              children: [
+                                d.original_name,
+                                " ",
+                                d.invoice_number ? `(${d.invoice_number})` : ""
+                              ]
+                            }, d.id, true, undefined, this))
+                          ]
+                        }, undefined, true, undefined, this)
+                      ]
+                    }, undefined, true, undefined, this)
+                  ]
+                }, undefined, true, undefined, this),
+                /* @__PURE__ */ jsx_dev_runtime.jsxDEV("div", {
+                  className: "flex flex-wrap gap-2 text-xs",
+                  children: [
+                    /* @__PURE__ */ jsx_dev_runtime.jsxDEV("span", {
+                      className: `text-[11px] self-center ${isDarkMode ? "text-slate-500" : "text-slate-400"}`,
+                      children: "Suggested:"
+                    }, undefined, false, undefined, this),
+                    /* @__PURE__ */ jsx_dev_runtime.jsxDEV("button", {
+                      onClick: () => handleSendChatMessage("What is the total spend across all invoices?"),
+                      className: `px-2.5 py-1 rounded-full border text-[11px] transition ${isDarkMode ? "bg-slate-950/60 border-slate-800 text-slate-300 hover:border-cyan-500 hover:text-cyan-300" : "bg-white border-slate-200 text-slate-700 hover:border-cyan-500"}`,
+                      children: "\uD83D\uDCB0 Total Spend Summary"
+                    }, undefined, false, undefined, this),
+                    /* @__PURE__ */ jsx_dev_runtime.jsxDEV("button", {
+                      onClick: () => handleSendChatMessage("List all supplier names and their invoice numbers."),
+                      className: `px-2.5 py-1 rounded-full border text-[11px] transition ${isDarkMode ? "bg-slate-950/60 border-slate-800 text-slate-300 hover:border-cyan-500 hover:text-cyan-300" : "bg-white border-slate-200 text-slate-700 hover:border-cyan-500"}`,
+                      children: "\uD83C\uDFE2 List All Suppliers"
+                    }, undefined, false, undefined, this),
+                    /* @__PURE__ */ jsx_dev_runtime.jsxDEV("button", {
+                      onClick: () => handleSendChatMessage("amader sobcheye beshi khoroch kon supplier er kache hoise?"),
+                      className: `px-2.5 py-1 rounded-full border text-[11px] transition ${isDarkMode ? "bg-slate-950/60 border-slate-800 text-slate-300 hover:border-cyan-500 hover:text-cyan-300" : "bg-white border-slate-200 text-slate-700 hover:border-cyan-500"}`,
+                      children: "\uD83C\uDDE7\uD83C\uDDE9 কোন সাপ্লায়ারে সবচেয়ে বেশি খরচ?"
+                    }, undefined, false, undefined, this)
+                  ]
+                }, undefined, true, undefined, this),
+                /* @__PURE__ */ jsx_dev_runtime.jsxDEV("div", {
+                  className: `flex-1 overflow-y-auto p-4 rounded-2xl border space-y-4 ${isDarkMode ? "bg-slate-950/80 border-slate-800" : "bg-slate-100/70 border-slate-200"}`,
+                  children: [
+                    chatMessages.map((msg, index2) => /* @__PURE__ */ jsx_dev_runtime.jsxDEV("div", {
+                      className: `flex items-start space-x-3 ${msg.role === "user" ? "justify-end" : "justify-start"}`,
+                      children: [
+                        msg.role === "assistant" && /* @__PURE__ */ jsx_dev_runtime.jsxDEV("div", {
+                          className: "w-8 h-8 rounded-xl bg-gradient-to-tr from-cyan-500 to-indigo-600 flex items-center justify-center shrink-0 shadow-md",
+                          children: /* @__PURE__ */ jsx_dev_runtime.jsxDEV(Sparkles, {
+                            className: "w-4 h-4 text-white"
+                          }, undefined, false, undefined, this)
+                        }, undefined, false, undefined, this),
+                        /* @__PURE__ */ jsx_dev_runtime.jsxDEV("div", {
+                          className: `max-w-[85%] rounded-2xl p-4 text-xs leading-relaxed ${msg.role === "user" ? "bg-indigo-600 text-white rounded-tr-none" : isDarkMode ? "bg-slate-900 border border-slate-800 text-slate-200 rounded-tl-none shadow-sm" : "bg-white border border-slate-200 text-slate-800 rounded-tl-none shadow-xs"}`,
+                          children: [
+                            /* @__PURE__ */ jsx_dev_runtime.jsxDEV("div", {
+                              className: "whitespace-pre-wrap",
+                              children: msg.content
+                            }, undefined, false, undefined, this),
+                            msg.sources && msg.sources.length > 0 && /* @__PURE__ */ jsx_dev_runtime.jsxDEV("div", {
+                              className: "mt-3 pt-3 border-t border-slate-800/60 text-[11px]",
+                              children: [
+                                /* @__PURE__ */ jsx_dev_runtime.jsxDEV("span", {
+                                  className: "font-semibold text-cyan-400",
+                                  children: "Grounded Document Sources:"
+                                }, undefined, false, undefined, this),
+                                /* @__PURE__ */ jsx_dev_runtime.jsxDEV("div", {
+                                  className: "grid grid-cols-1 sm:grid-cols-2 gap-2 mt-1.5",
+                                  children: msg.sources.map((src, sIdx) => /* @__PURE__ */ jsx_dev_runtime.jsxDEV("div", {
+                                    className: `p-2 rounded-lg border text-[10px] ${isDarkMode ? "bg-slate-950 border-slate-800/80 text-slate-300" : "bg-slate-50 border-slate-200 text-slate-600"}`,
+                                    children: [
+                                      /* @__PURE__ */ jsx_dev_runtime.jsxDEV("div", {
+                                        className: "font-semibold text-slate-200 truncate",
+                                        children: src.filename
+                                      }, undefined, false, undefined, this),
+                                      /* @__PURE__ */ jsx_dev_runtime.jsxDEV("div", {
+                                        className: "text-slate-400",
+                                        children: [
+                                          src.supplier ? `${src.supplier} • ` : "",
+                                          "$",
+                                          src.total ? `$${src.total}` : "",
+                                          src.relevanceScore ? ` (Match: ${Math.round(src.relevanceScore * 100)}%)` : ""
+                                        ]
+                                      }, undefined, true, undefined, this)
+                                    ]
+                                  }, sIdx, true, undefined, this))
+                                }, undefined, false, undefined, this)
+                              ]
+                            }, undefined, true, undefined, this),
+                            msg.modelUsed && /* @__PURE__ */ jsx_dev_runtime.jsxDEV("div", {
+                              className: "mt-2 text-[10px] text-slate-500 text-right font-mono",
+                              children: [
+                                "via ",
+                                msg.modelUsed
+                              ]
+                            }, undefined, true, undefined, this)
+                          ]
+                        }, undefined, true, undefined, this)
+                      ]
+                    }, index2, true, undefined, this)),
+                    chatLoading && /* @__PURE__ */ jsx_dev_runtime.jsxDEV("div", {
+                      className: "flex items-center space-x-3 text-xs text-cyan-400 font-medium",
+                      children: [
+                        /* @__PURE__ */ jsx_dev_runtime.jsxDEV("div", {
+                          className: "w-8 h-8 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center animate-pulse",
+                          children: /* @__PURE__ */ jsx_dev_runtime.jsxDEV(Bot, {
+                            className: "w-4 h-4 text-cyan-400"
+                          }, undefined, false, undefined, this)
+                        }, undefined, false, undefined, this),
+                        /* @__PURE__ */ jsx_dev_runtime.jsxDEV("span", {
+                          children: "DocIntel AI Copilot is inspecting documents and generating response..."
+                        }, undefined, false, undefined, this)
+                      ]
+                    }, undefined, true, undefined, this)
+                  ]
+                }, undefined, true, undefined, this),
+                /* @__PURE__ */ jsx_dev_runtime.jsxDEV("form", {
+                  onSubmit: (e) => {
+                    e.preventDefault();
+                    handleSendChatMessage();
+                  },
+                  className: "flex items-center space-x-2",
+                  children: [
+                    /* @__PURE__ */ jsx_dev_runtime.jsxDEV("input", {
+                      type: "text",
+                      value: chatInput,
+                      onChange: (e) => setChatInput(e.target.value),
+                      placeholder: "Ask about any invoice amount, line item, or vendor query in English or বাংলা...",
+                      disabled: chatLoading,
+                      className: `flex-1 rounded-xl px-4 py-3 text-xs border focus:outline-none focus:ring-2 focus:ring-cyan-500 transition ${isDarkMode ? "bg-slate-950 border-slate-800 text-white placeholder-slate-500" : "bg-white border-slate-200 text-slate-900 placeholder-slate-400 shadow-xs"}`
+                    }, undefined, false, undefined, this),
+                    /* @__PURE__ */ jsx_dev_runtime.jsxDEV("button", {
+                      type: "submit",
+                      disabled: chatLoading || !chatInput.trim(),
+                      className: "px-5 py-3 rounded-xl bg-gradient-to-r from-cyan-500 to-indigo-600 hover:from-cyan-400 hover:to-indigo-500 disabled:opacity-50 text-white font-medium text-xs flex items-center space-x-2 transition shadow-lg shadow-cyan-500/20 cursor-pointer",
+                      children: [
+                        /* @__PURE__ */ jsx_dev_runtime.jsxDEV("span", {
+                          children: "Send"
+                        }, undefined, false, undefined, this),
+                        /* @__PURE__ */ jsx_dev_runtime.jsxDEV(Send, {
+                          className: "w-3.5 h-3.5"
                         }, undefined, false, undefined, this)
                       ]
                     }, undefined, true, undefined, this)

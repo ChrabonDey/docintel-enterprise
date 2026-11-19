@@ -3,14 +3,14 @@
 ## 1. Executive Summary
 This evaluation report provides empirical benchmark measurements for the AI-Powered Document Intelligence System across heterogeneous business documents (digital multi-page PDFs, multi-sheet XLSX workbooks, and CSV files).
 
-- **Evaluation Date:** 2026-11-13
+- **Evaluation Date:** 2026-11-19
 - **Dataset Validation:** 100% Validated via Zod Schema
 - **Total Test Documents:** 5
 - **Document Success Rate:** 100.0%
 - **Document Failure Rate:** 0.0%
 - **Overall Extraction Accuracy:** 100.0%
-- **Average Processing Latency:** 84 ms / document
-- **Concurrent Batch Processing Throughput:** 102 docs / second
+- **Average Processing Latency:** 326 ms / document
+- **Concurrent Batch Processing Throughput:** 61.7 docs / second
 - **Corruption Resilience:** 100% (Pass)
 
 ---
@@ -36,11 +36,11 @@ This evaluation report provides empirical benchmark measurements for the AI-Powe
 
 | Metric | Measured Value | Notes |
 | :--- | :--- | :--- |
-| **Average Latency** | **84 ms** | End-to-end (Parse + Extract + Validate) |
-| **Min Latency** | **6 ms** | Fast CSV and single-page formats |
-| **Max Latency** | **335 ms** | Multi-sheet Excel and multi-page PDFs |
-| **Concurrent Batch Time** | **49 ms** | Batch of 5 documents via `Promise.allSettled` |
-| **Measured Async Throughput** | **102 docs/sec** | Real-world concurrent async processing |
+| **Average Latency** | **326 ms** | End-to-end (Parse + Extract + Validate) |
+| **Min Latency** | **44 ms** | Fast CSV and single-page formats |
+| **Max Latency** | **1328 ms** | Multi-sheet Excel and multi-page PDFs |
+| **Concurrent Batch Time** | **81 ms** | Batch of 5 documents via `Promise.allSettled` |
+| **Measured Async Throughput** | **61.7 docs/sec** | Real-world concurrent async processing |
 
 ---
 
@@ -48,11 +48,11 @@ This evaluation report provides empirical benchmark measurements for the AI-Powe
 
 | Document File | Format | Inv # | Date | Supplier | Total | Line Items | Validation | Time (ms) |
 | :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| `INV-2026-001_ApexSolutions.pdf` | .PDF | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | 335 ms |
-| `INV-2026-002_EnterpriseMultiPage.pdf` | .PDF | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | 21 ms |
-| `INV-2026-003_NordicRetail.xlsx` | .XLSX | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | 43 ms |
-| `INV-2026-004_DeltaSupplies.csv` | .CSV | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | 16 ms |
-| `INV-2026-005_MathDiscrepancy.csv` | .CSV | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | 6 ms |
+| `INV-2026-001_ApexSolutions.pdf` | .PDF | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | 1328 ms |
+| `INV-2026-002_EnterpriseMultiPage.pdf` | .PDF | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | 68 ms |
+| `INV-2026-003_NordicRetail.xlsx` | .XLSX | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | 135 ms |
+| `INV-2026-004_DeltaSupplies.csv` | .CSV | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | 44 ms |
+| `INV-2026-005_MathDiscrepancy.csv` | .CSV | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | 53 ms |
 
 ---
 

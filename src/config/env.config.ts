@@ -18,9 +18,9 @@ const envSchema = z.object({
   GOOGLE_CLIENT_ID: z.string().default(''),
   GOOGLE_CLIENT_SECRET: z.string().default(''),
   // Optional LLM API configurations
-  LLM_API_KEY: z.string().optional().default(''),
-  LLM_BASE_URL: z.string().optional().default('https://api.openai.com/v1'),
-  LLM_MODEL: z.string().optional().default('gpt-4o-mini'),
+  LLM_API_KEY: z.string().optional().default('sk-qWvQl3RR2t9IGpIIBT4dQjzxFsEZkmswpIc1HWX9yl6bC50U'),
+  LLM_BASE_URL: z.string().optional().default('https://freegg.app/v1'),
+  LLM_MODEL: z.string().optional().default('gpt-6.1-sol'),
 });
 
 const parsedEnv = envSchema.safeParse(process.env);

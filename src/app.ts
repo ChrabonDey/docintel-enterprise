@@ -10,6 +10,7 @@ import { authRoutes } from './modules/auth/auth.routes';
 import { documentRoutes } from './modules/documents/document.routes';
 import { searchRoutes } from './modules/search/search.routes';
 import { analyticsRoutes } from './modules/analytics/analytics.routes';
+import { chatRoutes } from './modules/chat/chat.routes';
 import { getDatabase } from './config/database';
 import { JobQueue } from './modules/jobs/queue.service';
 
@@ -59,6 +60,7 @@ export function createApp(): express.Application {
   app.use('/api/v1/documents', documentRoutes);
   app.use('/api/v1/search', searchRoutes);
   app.use('/api/v1/analytics', analyticsRoutes);
+  app.use('/api/v1/chat', chatRoutes);
 
   // 7. Serve frontend for root and HTML views
   app.get('/', (req, res) => {

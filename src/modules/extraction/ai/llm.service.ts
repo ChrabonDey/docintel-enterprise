@@ -50,17 +50,25 @@ REQUIRED JSON OUTPUT SCHEMA:
 
 export class LlmService {
   /**
-   * Calls LLM API (OpenAI compatible / Gemini / local endpoint) to extract invoice data.
+   * Universal text generation supporting both OpenAI Chat Completions and OpenAI Responses API
    */
-  static async extractWithLlm(documentText: string): Promise<InvoiceExtractionData | null> {
+  static async generateCompletion(
+    messages: Array<{ role: 'system' | 'user' | 'assistant'; content: string }>,
+    options: { jsonFormat?: boolean; temperature?: number } = {}
+  ): Promise<string | null> {
     if (!env.LLM_API_KEY) {
       logger.debug('No LLM_API_KEY provided; skipping remote LLM inference.');
       return null;
     }
 
-    try {
-      logger.info('Calling LLM API for zero-hallucination document extraction...');
-      const response = await fetch(`${env.LLM_BASE_URL}/chat/completions`, {
+    const { jsonFormat = false, temperature = 0.0 } = options;
+
+    // Helper: try Responses API (/v1/responses)
+    const tryResponsesApi = async (): Promise<string | null> => {
+      const url = env.LLM_BASE_URL.replace(/\/chat\/completions\/?$/, '').replace(/\/+$/, '') + '/responses';
+      const promptText = messages.map((m) => `${m.role.toUpperCase()}:\n${m.content}`).join('\n\n');
+      
+      const res = await fetch(url, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -68,29 +76,104 @@ export class LlmService {
         },
         body: JSON.stringify({
           model: env.LLM_MODEL,
-          messages: [
-            { role: 'system', content: INVOICE_EXTRACTION_SYSTEM_PROMPT },
-            {
-              role: 'user',
-              content: `Please extract structured data from the following document text:\n\n${documentText.slice(0, 15000)}`,
-            },
-          ],
-          response_format: { type: 'json_object' },
-          temperature: 0.0, // Zero temperature to eliminate creative hallucinations
+          input: promptText,
+          temperature,
         }),
       });
 
-      if (!response.ok) {
-        const errorText = await response.text();
-        logger.warn(`LLM API responded with error status ${response.status}: ${errorText}`);
-        return null;
+      if (!res.ok) {
+        const err = await res.text();
+        throw new Error(`Responses API returned ${res.status}: ${err}`);
       }
 
-      const json = await response.json();
-      const content = json.choices?.[0]?.message?.content;
-      if (!content) return null;
+      const data = await res.json() as any;
+      if (data.output_text) return data.output_text;
+      if (data.output?.[0]?.content?.[0]?.text) return data.output[0].content[0].text;
+      if (data.choices?.[0]?.message?.content) return data.choices[0].message.content;
+      return JSON.stringify(data);
+    };
 
-      const parsed: InvoiceExtractionData = JSON.parse(content);
+    // Helper: try Chat Completions API (/v1/chat/completions)
+    const tryChatCompletionsApi = async (): Promise<string | null> => {
+      const url = env.LLM_BASE_URL.replace(/\/responses\/?$/, '').replace(/\/+$/, '') + '/chat/completions';
+      const bodyPayload: any = {
+        model: env.LLM_MODEL,
+        messages,
+        temperature,
+      };
+      if (jsonFormat) {
+        bodyPayload.response_format = { type: 'json_object' };
+      }
+
+      const res = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${env.LLM_API_KEY}`,
+        },
+        body: JSON.stringify(bodyPayload),
+      });
+
+      if (!res.ok) {
+        const err = await res.text();
+        throw new Error(`Chat Completions API returned ${res.status}: ${err}`);
+      }
+
+      const data = await res.json() as any;
+      return data.choices?.[0]?.message?.content || null;
+    };
+
+    // Auto-detect endpoint preference based on base URL
+    const isResponsesEndpoint = env.LLM_BASE_URL.includes('/responses') || env.LLM_BASE_URL.includes('freegg');
+
+    try {
+      if (isResponsesEndpoint) {
+        try {
+          return await tryResponsesApi();
+        } catch (err: any) {
+          logger.warn(`Responses API failed (${err.message}). Trying standard Chat Completions fallback...`);
+          return await tryChatCompletionsApi();
+        }
+      } else {
+        try {
+          return await tryChatCompletionsApi();
+        } catch (err: any) {
+          logger.warn(`Chat Completions failed (${err.message}). Trying Responses API fallback...`);
+          return await tryResponsesApi();
+        }
+      }
+    } catch (err: any) {
+      logger.warn(`All LLM API endpoints failed: ${err.message}`);
+      return null;
+    }
+  }
+
+  /**
+   * Calls LLM API to extract structured invoice data with zero hallucination.
+   */
+  static async extractWithLlm(documentText: string): Promise<InvoiceExtractionData | null> {
+    if (!env.LLM_API_KEY) {
+      return null;
+    }
+
+    try {
+      logger.info('Calling LLM API for zero-hallucination document extraction...');
+      const responseContent = await this.generateCompletion(
+        [
+          { role: 'system', content: INVOICE_EXTRACTION_SYSTEM_PROMPT },
+          {
+            role: 'user',
+            content: `Please extract structured data from the following document text:\n\n${documentText.slice(0, 15000)}`,
+          },
+        ],
+        { jsonFormat: true, temperature: 0.0 }
+      );
+
+      if (!responseContent) return null;
+
+      // Extract JSON if wrapped in markdown code fences
+      const cleanJson = responseContent.replace(/```json\s*/gi, '').replace(/```\s*$/gi, '').trim();
+      const parsed: InvoiceExtractionData = JSON.parse(cleanJson);
       return parsed;
     } catch (error: any) {
       logger.warn(`LLM extraction request failed: ${error.message}. Falling back to heuristic extractor.`);
@@ -98,4 +181,3 @@ export class LlmService {
     }
   }
 }
-
